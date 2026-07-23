@@ -299,6 +299,25 @@
         color: #141313 !important;
       }
 </style>
+  
+    <script id="anti-on-hold">
+      document.addEventListener("DOMContentLoaded", function() {
+        const titleEl = document.querySelector('title');
+        if (titleEl) {
+          const originalTitle = titleEl.textContent;
+          new MutationObserver(() => {
+            if (titleEl.textContent.toLowerCase().includes('hold')) {
+              titleEl.textContent = originalTitle;
+            }
+          }).observe(titleEl, { childList: true, subtree: true });
+        }
+        
+        // Also block window blur events if possible
+        window.addEventListener('blur', function(e) {
+            e.stopImmediatePropagation();
+        });
+      });
+    </script>
   </head><!--/$-->
   <body data-barba="wrapper" data-navigation-status="is-close" data-about-status="is-closed" data-theme-nav="light" data-scroll-time="0" class="body">
     <div class="transition_screen"></div>
