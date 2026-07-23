@@ -251,27 +251,32 @@
     </style>
   
     <style id="custom-scrollbar-style">
-      /* Custom Webkit Scrollbar */
+      /* Floating Custom Webkit Scrollbar */
+      html, body {
+        overflow-y: overlay; /* Allows scrollbar to overlay content without affecting layout width in Webkit */
+      }
       ::-webkit-scrollbar {
-        width: 6px;
-        height: 6px;
+        width: 14px; /* Total width including transparent borders */
+        height: 14px;
       }
       ::-webkit-scrollbar-track {
         background: transparent;
       }
       ::-webkit-scrollbar-thumb {
-        background: rgba(20, 19, 19, 0.3); /* matching theme black but transparent */
+        background-color: rgba(20, 19, 19, 0.4); 
         border-radius: 10px;
+        border: 4px solid transparent;
+        background-clip: content-box; /* Shrinks the thumb background inside the transparent border */
       }
       ::-webkit-scrollbar-thumb:hover {
-        background: rgba(20, 19, 19, 0.6);
+        background-color: rgba(20, 19, 19, 0.6);
       }
       /* Firefox */
       * {
         scrollbar-width: thin;
-        scrollbar-color: rgba(20, 19, 19, 0.3) transparent;
+        scrollbar-color: rgba(20, 19, 19, 0.4) transparent;
       }
-    </style>
+  </style>
   </head><!--/$-->
   <body data-barba="wrapper" data-navigation-status="is-close" data-about-status="is-closed" data-theme-nav="light" data-scroll-time="0" class="body">
     <div class="transition_screen"></div>
