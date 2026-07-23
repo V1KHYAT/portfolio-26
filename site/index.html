@@ -265,17 +265,17 @@
       /* Custom Floating Scrollbar Styles */
       #custom-floating-scrollbar {
         position: fixed;
-        right: 6px;
+        right: 4px;
         top: 0;
-        width: 6px;
-        background-color: rgba(20, 19, 19, 0.4);
+        width: 4px;
+        background-color: rgba(20, 19, 19, 0.2);
         border-radius: 10px;
         z-index: 99999;
-        pointer-events: none; /* Let clicks pass through if needed, or make it draggable later */
-        transition: opacity 0.3s ease;
-        opacity: 0; /* hidden by default, shown on scroll */
+        pointer-events: none;
+        transition: opacity 0.2s ease;
+        opacity: 0;
       }
-      body:hover #custom-floating-scrollbar {
+      #custom-floating-scrollbar.scrolling {
         opacity: 1;
       }
   </style>
@@ -3740,6 +3740,7 @@
     <script>
       (function() {
         const scrollbar = document.getElementById('custom-floating-scrollbar');
+        let hideTimeout = null;
         
         function updateScrollbar() {
           const windowHeight = window.innerHeight;
@@ -3753,22 +3754,36 @@
           
           scrollbar.style.display = 'block';
           
-          const thumbHeight = Math.max((windowHeight / documentHeight) * windowHeight, 40); // min height 40px
+          // Gap from top and bottom
+          const offset = 12;
+          const availableHeight = windowHeight - (offset * 2);
+          
+          const thumbHeight = Math.max((windowHeight / documentHeight) * availableHeight, 40);
           const maxScroll = documentHeight - windowHeight;
-          const maxThumbTop = windowHeight - thumbHeight;
+          const maxThumbTop = windowHeight - offset - thumbHeight;
           const scrollFraction = scrollY / maxScroll;
           
-          const thumbTop = scrollFraction * maxThumbTop;
+          const thumbTop = offset + (scrollFraction * (maxThumbTop - offset));
           
           scrollbar.style.height = thumbHeight + 'px';
           scrollbar.style.transform = 'translateY(' + thumbTop + 'px)';
+          
+          // Show scrollbar
+          scrollbar.classList.add('scrolling');
+          
+          // Hide quickly after scrolling stops
+          if (hideTimeout) clearTimeout(hideTimeout);
+          hideTimeout = setTimeout(() => {
+            scrollbar.classList.remove('scrolling');
+          }, 600); // 600ms before fading out
         }
         
         window.addEventListener('scroll', updateScrollbar, { passive: true });
         window.addEventListener('resize', updateScrollbar);
         
-        // Initial call after a slight delay to ensure layout is complete
         setTimeout(updateScrollbar, 500);
       })();
     </script>
+  
+    
   </body></html><!--/$-->
