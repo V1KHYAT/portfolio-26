@@ -3732,7 +3732,32 @@
     </script>
     <script src="js/three.min.js"></script>
     <script src="js/lenis.min.js"></script>
-    <script src="howler%402.2.4"></script>
+    
+<script>
+  window.Howler = { mute: function() {}, volume: function() {} };
+  window.Howl = function() {
+    return {
+      play: function() {},
+      pause: function() {},
+      stop: function() {},
+      mute: function() {},
+      volume: function() {},
+      fade: function() {},
+      rate: function() {},
+      seek: function() {},
+      loop: function() {},
+      state: function() { return 'unloaded'; },
+      playing: function() { return false; },
+      duration: function() { return 0; },
+      on: function() {},
+      once: function() {},
+      off: function() {},
+      load: function() {},
+      unload: function() {}
+    };
+  };
+</script>
+
     <script src="js/barba.umd.js"></script>
     <script>
       (function () {
