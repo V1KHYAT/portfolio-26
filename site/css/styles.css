@@ -3,9 +3,8 @@ html{-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;font-family:sans-se
 .footer_wrap { min-height: 100svh; justify-content: center; gap: 40px; display: flex; flex-flow: column; }
 /* Custom Navlink Fix */
 .navbar_links_a {
-    color: var(--swatch--dark, #1c1c1c) !important;
     opacity: 0.5 !important;
-    transition: opacity 0.2s ease, color 0.2s ease !important;
+    transition: opacity 0.2s ease !important;
 }
 .navbar_links_a:hover, .navbar_links_a.w--current {
     opacity: 1 !important;
