@@ -238,31 +238,6 @@
 }
   */
     
-  .hover-slideshow {
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    position: relative;
-    width: 100%;
-    height: 100%;
-  }
-  .hover-slideshow img.slide {
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    object-fit: cover;
-    opacity: 0;
-    animation: slideshow 2s infinite;
-  }
-  .hover-slideshow img.s1 { animation-delay: 0s; }
-  .hover-slideshow img.s2 { animation-delay: 0.5s; }
-  .hover-slideshow img.s3 { animation-delay: 1.0s; }
-  .hover-slideshow img.s4 { animation-delay: 1.5s; }
-
-  @keyframes slideshow {
-    0%, 25% { opacity: 1; }
-    25.01%, 100% { opacity: 0; }
-  }
-
-
     /* Force navbar visibility and color so it doesn't hide/blend into the light footer */
     .navbar_contain, .navbar_home_svg, .navbar_menu_span, .navbar_link, .footer_nav_span {
         color: var(--swatch--black-400) !important;
@@ -361,55 +336,28 @@
     </script>
   
 <style>
-  .works_home_result_value {
-    font-size: var(--_typography---font-size--text-main) !important;
-    font-weight: 500 !important;
-    margin-bottom: 0.25rem !important;
+  .footer_bottom, .footer_canvas_wrap, .footer_canvas_bottom {
+    display: none !important;
   }
-  .works_home_result_label {
-    font-size: var(--_typography---font-size--text-main) !important;
-    max-width: 100% !important;
-    opacity: 0.8 !important;
+  .footer_wrap {
+    min-height: 100vh !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    padding-bottom: 5rem !important;
   }
+</style>
 
-    
-    body .works_home_image {
-      transform: scale(1.05);
-    }
-    .reel_home_cover {
-      z-index: 10 !important;
-      position: absolute !important;
-      top: 0; left: 0; width: 100%; height: 100%;
-      display: flex !important;
-      justify-content: center;
-      align-items: center;
-      pointer-events: none;
-    }
-    .hover-slideshow {
-      position: relative;
-      width: 75%;
-      aspect-ratio: 3 / 2;
-        height: auto !important;
-      border-radius: var(--radius--small);
-      overflow: hidden;
-    }
-    .hover-slideshow img.slide {
-      animation-play-state: paused;
-    }
-    .works_home_item:hover .hover-slideshow img.slide {
-      animation-play-state: running;
-    }
-    @media (hover: hover) and (pointer: fine) {
-      .works_home_item:hover .reel_home_cover {
-        display: flex !important;
-      }
-    }
-    @media (hover: none) or (pointer: coarse) {
-      .works_home_item.is-active .reel_home_cover {
-        display: flex !important;
-      }
-    }
-  </style>
+<style>
+  .faq_home_wrap {
+    background-color: var(--swatch--beige-100, #F3EBE2) !important;
+    position: relative !important;
+    z-index: 1 !important;
+  }
+  .navbar_wrap {
+    z-index: 999 !important;
+  }
+</style>
 </head><!--/$-->
   <body data-barba="wrapper" data-navigation-status="is-close" data-about-status="is-closed" data-theme-nav="light" data-scroll-time="0" class="body">
     <div class="transition_screen"></div>
@@ -1558,674 +1506,238 @@
             <ul class="navbar_links_ul u-gap-small u-hflex-left-center"></ul>
             <!--/$-->
           </nav>
-          <div id="w-node-_5e405748-8057-a8c6-6d90-a619b529a618-b529a5fc" class="navbar_cta_wrap u-text-style-small u-text-trim-off"><a href="index.html" data-link-hover="" class="navbar_link w-inline-block" style="padding: 0.5rem 0.75rem; pointer-events: auto; color: var(--swatch--black-400);"><div class="footer_nav_span u-text-style-main" style="color: var(--swatch--black-400);">Home</div></a><a href="work.html" data-link-hover="" class="navbar_link w-inline-block" style="padding: 0.5rem 0.75rem; pointer-events: auto; color: var(--swatch--black-400);"><div class="footer_nav_span u-text-style-main" style="color: var(--swatch--black-400);">Projects</div></a><a href="play.html" data-link-hover="" class="navbar_link w-inline-block" style="padding: 0.5rem 0.75rem; pointer-events: auto; color: var(--swatch--black-400);"><div class="footer_nav_span u-text-style-main" style="color: var(--swatch--black-400);">Play</div></a><a href="#contact" data-link-hover="" class="navbar_link w-inline-block" style="padding: 0.5rem 0.75rem; pointer-events: auto; color: var(--swatch--black-400);"><div class="footer_nav_span u-text-style-main" style="color: var(--swatch--black-400);">Contact Me</div></a></div>
+          <div id="w-node-_5e405748-8057-a8c6-6d90-a619b529a618-b529a5fc" class="navbar_cta_wrap u-text-style-small u-text-trim-off"><a href="index.html" data-link-hover="" class="navbar_link w-inline-block" style="padding: 0.5rem 0.75rem; pointer-events: auto; color: var(--swatch--black-400);"><div class="footer_nav_span u-text-style-main" style="color: var(--swatch--black-400);">Home</div></a><a href="work.html" data-link-hover="" class="navbar_link w-inline-block" style="padding: 0.5rem 0.75rem; pointer-events: auto; color: var(--swatch--black-400);"><div class="footer_nav_span u-text-style-main" style="color: var(--swatch--black-400);">Work</div></a><a href="play.html" data-link-hover="" class="navbar_link w-inline-block" style="padding: 0.5rem 0.75rem; pointer-events: auto; color: var(--swatch--black-400);"><div class="footer_nav_span u-text-style-main" style="color: var(--swatch--black-400);">Play</div></a><a href="#contact" data-link-hover="" class="navbar_link w-inline-block" style="padding: 0.5rem 0.75rem; pointer-events: auto; color: var(--swatch--black-400);"><div class="footer_nav_span u-text-style-main" style="color: var(--swatch--black-400);">Contact Me</div></a></div>
         </div>
       </header>
       <main class="page_main">
-        <section data-animate="" data-theme-section="light" data-scroll-container="" data-target-translate="100" data-overlay-container="" class="hero_home_wrap">
-          <div class="hero_home_gradient"></div>
-          <div data-hero-canvas-container="" class="hero_home_cover">
-            <div class="hero_home_fade"></div>
-            <div data-overlay-scroll="" class="hero_home_overlay"></div>
-            <img src="69d51282c6041349788c8177_Key%20Visual-2.avif" loading="eager" width="1967" height="1311" alt="" fetchpriority="high" data-translate-hero="true" class="hero_home_img" style="height: 130%;"><!--$--><canvas data-hero-canvas="" class="hero_canvas_item"></canvas><!--/$-->
-          </div>
-          <div class="hero_home_contain">
-            <div class="hero_home_main">
-              <div class="hero_home_content">
-                <!--$--><svg viewBox="0 0 449 364" fill="none" xmlns="http://www.w3.org/2000/svg" class="hero_home_content_svg" width="100%" style="opacity: 0.7;">
-<path d="M106.507 0.358775C114.722 -0.797121 130.359 1.04383 138.238 2.9828C176.704 12.4488 211.523 37.5505 237.792 66.6019C244.84 74.3976 253.42 84.6755 258.883 93.517L258.831 228.499C289.122 197.645 319.594 166.97 350.248 136.472L377.666 108.905C382.343 104.178 388.662 97.4074 393.528 93.1195C397.75 92.7767 403.621 92.9564 407.994 92.9838C370.588 131.105 332.021 168.79 294.893 206.982C303.702 209.717 316.421 217.118 324.171 222.091C379.66 257.677 411.937 311.567 449.01 363.908L425.254 363.889C387.599 311.215 344.095 241.723 278.303 222.914L258.835 242.76L258.853 309.502L258.831 363.873C253.476 363.955 247.924 363.855 242.554 363.822C242.305 340.207 241.435 315.669 242.038 292.143C238.541 294.604 235.461 296.706 231.632 298.718C211.474 309.176 187.975 311.147 166.356 304.199C147.306 298.18 131.451 284.797 122.316 267.031C117.54 257.591 115.265 247.808 115.092 237.427C114.329 191.701 153.524 161.236 197.061 161.31C214.45 161.339 225.647 163.876 241.893 169.338L242.016 108.509C224.018 108.141 204.902 108.447 186.841 108.447L82.0976 108.454L82.0322 356.087C76.5034 350.984 70.8726 345.992 65.1445 341.112L65.0859 108.523C43.7836 108.079 21.4817 108.494 0.0507491 108.44C-0.0530165 103.333 0.0305627 98.0618 0.0546554 92.9398L73.2451 92.8119C67.2426 86.5131 63.0699 82.5083 56.374 77.0404C52.0511 56.3299 52.028 36.5097 66.4121 19.2484C76.6793 6.92775 90.8409 1.69668 106.507 0.358775ZM241.917 177.63C230.668 174.148 218.012 171.097 206.101 172.324C183.475 174.264 164.119 182.432 149.288 200.207C137.487 214.357 131.731 232.58 133.267 250.94C135.294 273.343 149.122 291.179 171.675 295.523C188.238 298.495 203.981 294.263 217.837 284.817C228.7 277.408 234.854 268.847 241.867 258.115C242.316 249.187 241.947 238.713 241.938 229.592L241.917 177.63ZM251.83 92.85C220.154 54.789 170.116 15.493 117.84 17.3959C111.693 17.8791 107.743 18.4441 101.866 20.2504C81.4085 26.5388 71.9118 45.8786 73.6113 66.3471C74.506 77.1183 77.1284 83.5335 81.8056 93.0092C123.601 92.4966 166.036 92.8986 207.894 92.9057C221.517 92.9112 238.462 93.3392 251.83 92.85Z" fill="currentColor"></path>
-</svg><!--/$-->
-                <h1 class="hero_home_content_p u-text-style-h4">I pair intelligent workflows with deep user research to architect precise digital products.<!--$--><br><!--/$-->‍<!--$--><br><!--/$-->For modern teams who demand rapid product velocity without sacrificing core UX logic.</h1>
-              </div>
-              <div class="hero_home_bottom">
-                <!--$--><img src="images/VIKHYATK.png" class="hero_home_svg" style="width: 100%; height: auto; opacity: 0.65; mix-blend-mode: multiply; object-fit: contain;"><!--/$-->
-              </div>
-            </div>
-          </div>
-        </section>
-        <section data-theme-section="light" data-stacking-cards-item="" data-slider="" class="problems_home_wrap">
-          <header class="problems_home_header">
-            <div class="problems_home_stats">
-              <div class="problems_stats_navigation">
-                <div class="problem_stats_line">
-                  <div data-progress-bar-start="" class="problem_stats_progress-start"></div>
-                  <div data-progress-bar-end="" class="problem_stats_progress-end"></div>
-                </div>
-                <div class="problem_stats_bottom">
-                  <div class="problem_stats_pagination">
-                    <!--$--><button aria-label="previous statistic" data-slider-prev="" data-btn-default="" class="problem_stats_button">
-                      <!--$--><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 13 13" fill="none" class="problem_stats_svg">
-                        <!--$-->
-                        <path d="M6.696 13L0 6.5L6.696 0L8.04 1.32796L3.672 5.5448H13V7.4552H3.672L8.04 11.6953L6.696 13Z" fill="currentColor"></path>
-                        <!--/$--></svg><!--/$--></button><!--/$--><!--$--><button aria-label="next statistic" data-slider-next="" data-btn-default="" class="problem_stats_button">
-                      <!--$--><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 13 13" fill="none" class="problem_stats_svg">
-                        <!--$-->
-                        <path d="M6.304 -5.85383e-07L13 6.5L6.304 13L4.96 11.672L9.328 7.4552L4.84742e-07 7.4552L6.51754e-07 5.5448L9.328 5.5448L4.96 1.30466L6.304 -5.85383e-07Z" fill="currentColor" class="path-5"></path>
-                        <!--/$--></svg><!--/$--></button><!--/$-->
+        
+        
+        
+        
+        
+        
+
+
+
+
+
+
+
+        
+        
+        <!--$-->
+        <section id="services" data-slider="" data-theme-section="light" class="services_home_wrap">
+          <div class="services_home_contain">
+            <div class="services_home_header">
+              <div class="services_home_stats">
+                <div class="problems_stats_navigation">
+                  <div class="problem_stats_line">
+                    <div data-progress-bar-start="" class="problem_stats_progress-start"></div>
+                    <div data-progress-bar-end="" class="problem_stats_progress-end"></div>
                   </div>
-                  <div class="problem_stats_index">
-                    <div class="problem_stats_index_text u-text-mono u-text-style-xsmall">
-                      0<span data-dynamic-value="" class="testimonials_dynamic_value">#</span>
+                  <div class="problem_stats_bottom">
+                    <div class="problem_stats_pagination">
+                      <!--$--><button aria-label="previous statistic" data-slider-prev="" data-btn-default="" class="problem_stats_button">
+                        <!--$--><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 13 13" fill="none" class="problem_stats_svg">
+                          <!--$-->
+                          <path d="M6.696 13L0 6.5L6.696 0L8.04 1.32796L3.672 5.5448H13V7.4552H3.672L8.04 11.6953L6.696 13Z" fill="currentColor"></path>
+                          <!--/$--></svg><!--/$--></button><!--/$--><!--$--><button aria-label="next statistic" data-slider-next="" data-btn-default="" class="problem_stats_button">
+                        <!--$--><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 13 13" fill="none" class="problem_stats_svg">
+                          <!--$-->
+                          <path d="M6.304 -5.85383e-07L13 6.5L6.304 13L4.96 11.672L9.328 7.4552L4.84742e-07 7.4552L6.51754e-07 5.5448L9.328 5.5448L4.96 1.30466L6.304 -5.85383e-07Z" fill="currentColor"></path>
+                          <!--/$--></svg><!--/$--></button><!--/$-->
                     </div>
-                    <div class="problem_stats_index_text u-text-mono u-text-style-xsmall">
-                      /
-                    </div>
-                    <div class="problem_stats_index_text u-text-mono u-text-style-xsmall">
-                      0<span data-counter-value="" class="testimonials_counter_value">3</span>
+                    <div class="problem_stats_index">
+                      <div class="problem_stats_index_text u-text-mono u-text-style-xsmall">
+                        0<span data-dynamic-value="" class="testimonials_dynamic_value">#</span>
+                      </div>
+                      <div class="problem_stats_index_text u-text-mono u-text-style-xsmall">
+                        /
+                      </div>
+                      <div class="problem_stats_index_text u-text-mono u-text-style-xsmall">
+                        0<span data-counter-value="" class="testimonials_counter_value">3</span>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div class="problem_home_stat-collection w-dyn-list">
-                <div role="list" class="problem_home_stat-list w-dyn-items">
-                  <div data-slider-item="" role="listitem" class="problem_home_stat-item w-dyn-item">
-                    <div data-slider-headshot="" data-split-text="" class="problem_home_stat-num u-text-style-h3">2x</div>
-                    <p data-slider-message="" data-split-text="" class="problem_home_stat-p u-text-style-main">Samsung Hackathon Winner across 2025 and 2026 for rapid problem solving and product innovation.</p>
-                  </div>
-                  <div data-slider-item="" role="listitem" class="problem_home_stat-item w-dyn-item">
-                    <div data-slider-headshot="" data-split-text="" class="problem_home_stat-num u-text-style-h3">20+</div>
-                    <p data-slider-message="" data-split-text="" class="problem_home_stat-p u-text-style-main">Live industry projects designed and shipped to production.</p>
+                <h3 class="services_home_heading-inner u-text-style-large u-text-mono">
+                  (Real client stories)
+                </h3>
+                <div class="services_home_collection w-dyn-list">
+                  <div role="list" class="services_home_list w-dyn-items">
+                    <div data-slider-item="" role="listitem" class="services_home_item w-dyn-item">
+                      <p data-slider-message="" data-split-text="" class="services_home_message u-text-style-small">
+                        "For years, our website struggled to showcase our work
+                        effectively and attract the right clients. Within just
+                        30 days of launching the new site with MONOLOG, we
+                        generated $100k in new sales and receive 2-3 qualified
+                        inquiries every week."
+                      </p>
+                      <div class="services_home_testimonials">
+                        <img data-slider-headshot="" src="69ce9284075cd51831cdc1d1_1753282172963.avif" alt="" loading="lazy" class="services_home_headshot u-ratio-1-1 u-background-skeleton">
+                        <div class="services_home_bottom">
+                          <p data-slider-details="" class="services_home_testimonee u-text-style-main is-name">
+                            Andrew Tynes
+                          </p>
+                          <p data-slider-details="" class="services_home_testimonee u-text-style-main">
+                            Owner, Mammoth Murals
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div data-slider-item="" role="listitem" class="services_home_item w-dyn-item">
+                      <p data-slider-message="" data-split-text="" class="services_home_message u-text-style-small">
+                        “Huy and his team at MONOLOG are rare collaborators.
+                        They care about your vision as if it were their own and
+                        helped us win bigger opportunities. Talented, humble,
+                        and relentless in finding elegant solutions, they’re the
+                        partner creative brands and agencies need.”
+                      </p>
+                      <div class="services_home_testimonials">
+                        <img data-slider-headshot="" src="690df5490b74ae9f75ed17eb_Default.avif" alt="" loading="lazy" class="services_home_headshot u-ratio-1-1 u-background-skeleton">
+                        <div class="services_home_bottom">
+                          <p data-slider-details="" class="services_home_testimonee u-text-style-main is-name">
+                            Jonathon Shannon
+                          </p>
+                          <p data-slider-details="" class="services_home_testimonee u-text-style-main">
+                            Creative Director, Supersolid
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div data-slider-item="" role="listitem" class="services_home_item w-dyn-item">
+                      <p data-slider-message="" data-split-text="" class="services_home_message u-text-style-small">
+                        "Lead management has significantly improved since launch
+                        — leads are much easier to qualify, and showcasing our
+                        completed work is now far more streamlined. The design
+                        is not only impressive but innovative; it truly stands
+                        out."
+                      </p>
+                      <div class="services_home_testimonials">
+                        <img data-slider-headshot="" src="690df5543d7243082ccbfcaa_OH_STAFF%C2%A9ANDYMACPHERSON-14%201.avif" alt="" loading="lazy" class="services_home_headshot u-ratio-1-1 u-background-skeleton">
+                        <div class="services_home_bottom">
+                          <p data-slider-details="" class="services_home_testimonee u-text-style-main is-name">
+                            Johnny Hyde
+                          </p>
+                          <p data-slider-details="" class="services_home_testimonee u-text-style-main">
+                            Director, OH Architecture
+                          </p>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="problems_home_top">
-              <h2 data-highlight-text="" class="problems_home_heading u-text-style-h1 u-weight-bold">Traditional design is too slow for modern product velocity. I use intelligent tools to accelerate research and prototyping, bypassing standard bottlenecks.<!--$--><br><!--/$--><!--$--><br><!--/$-->But speed means nothing without core UX logic. I invest the time saved into validating human behavior, structuring system architecture, and solving real problems.</h2>
-              <div class="gap_home_testimonial">
-                <img src="images/pfp.jpg" loading="lazy" alt="A headshot of Vikhyat" class="problems_home_headshot">
-                <div class="gap_home_content">
-                  <div class="gap_home_content_text u-text-style-main">Vikhyat Kaushik</div>
-                  <div class="gap_home_content_text u-text-style-main">UX Designer</div>
+              <div class="services_home_top">
+                <div class="services_home_eyebrow">
+                  <div data-wf--global-eyebrow--variant="base" class="g_eyebrow">
+                    <div class="g_eyebrow_circle"></div>
+                    <div id="w-node-_01473dc5-045d-cd95-0817-52d9c52ac3d1-c52ac3cf" class="g_eyebrow_text u-text-style-large">
+                      What we can help with
+                    </div>
+                  </div>
+                </div>
+                <div class="services_home_content">
+                  <div class="services_home_services w-dyn-list">
+                    <div role="list" class="services_home_service-list w-dyn-items">
+                      <div data-content-trigger="" role="listitem" class="services_home_service_item w-dyn-item">
+                        <img src="697ef10d5fcc93485bf8dfb4_Brand%20Strategy.avif" loading="lazy" alt="" sizes="100vw" srcset="
+                            697ef10d5fcc93485bf8dfb4_Brand%20Strategy-p-500.avif 500w,
+                            697ef10d5fcc93485bf8dfb4_Brand%20Strategy.avif       859w
+                          " class="services_home_service_image">
+                        <h2 class="services_home_heading u-text-style-h2">
+                          Brand Strategy
+                        </h2>
+                      </div>
+                      <div data-content-trigger="" role="listitem" class="services_home_service_item w-dyn-item">
+                        <img src="697ef16f889c1ea502d8ee65_Visual%20Identity.avif" loading="lazy" alt="" sizes="100vw" srcset="
+                            697ef16f889c1ea502d8ee65_Visual%20Identity-p-500.avif 500w,
+                            697ef16f889c1ea502d8ee65_Visual%20Identity.avif       859w
+                          " class="services_home_service_image">
+                        <h2 class="services_home_heading u-text-style-h2">
+                          Visual Identity
+                        </h2>
+                      </div>
+                      <div data-content-trigger="" role="listitem" class="services_home_service_item w-dyn-item">
+                        <img src="697ef17ae082299197a3aa88_Website%20Strategy.avif" loading="lazy" alt="" class="services_home_service_image">
+                        <h2 class="services_home_heading u-text-style-h2">
+                          Website Strategy
+                        </h2>
+                      </div>
+                      <div data-content-trigger="" role="listitem" class="services_home_service_item w-dyn-item">
+                        <img src="697ef15eca91ffc3ae831e4e_Web%20Design.avif" loading="lazy" alt="" sizes="100vw" srcset="
+                            697ef15eca91ffc3ae831e4e_Web%20Design-p-500.avif 500w,
+                            697ef15eca91ffc3ae831e4e_Web%20Design.avif       859w
+                          " class="services_home_service_image">
+                        <h2 class="services_home_heading u-text-style-h2">
+                          Website Design
+                        </h2>
+                      </div>
+                      <div data-content-trigger="" role="listitem" class="services_home_service_item w-dyn-item">
+                        <img src="697ef13b8c2c03a57cff1df0_Webflow%20Development.avif" loading="lazy" alt="" sizes="100vw" srcset="
+                            697ef13b8c2c03a57cff1df0_Webflow%20Development-p-500.avif 500w,
+                            697ef13b8c2c03a57cff1df0_Webflow%20Development.avif       859w
+                          " class="services_home_service_image">
+                        <h2 class="services_home_heading u-text-style-h2">
+                          Website Development
+                        </h2>
+                      </div>
+                      <div data-content-trigger="" role="listitem" class="services_home_service_item w-dyn-item">
+                        <img src="697ef14da1c89e5e19e5cca4_3D%20Development.avif" loading="lazy" alt="" sizes="100vw" srcset="
+                            697ef14da1c89e5e19e5cca4_3D%20Development-p-500.avif 500w,
+                            697ef14da1c89e5e19e5cca4_3D%20Development.avif       859w
+                          " class="services_home_service_image">
+                        <h2 class="services_home_heading u-text-style-h2">
+                          3D Development
+                        </h2>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="services_home_img-wrap">
+                    <div class="services_home_img-collection u-grid-landscape w-dyn-list">
+                      <div id="w-node-e8f74dcd-e1ee-3895-e264-45e25dc77395-c8fe3e53" role="list" class="services_home_img-list w-dyn-items">
+                        <div id="w-node-e8f74dcd-e1ee-3895-e264-45e25dc77396-c8fe3e53" role="listitem" class="services_home_img-item w-dyn-item">
+                          <img data-content-image="" loading="lazy" alt="" src="697ef10d5fcc93485bf8dfb4_Brand%20Strategy.avif" sizes="100vw" srcset="
+                              697ef10d5fcc93485bf8dfb4_Brand%20Strategy-p-500.avif 500w,
+                              697ef10d5fcc93485bf8dfb4_Brand%20Strategy.avif       859w
+                            " class="services_home_img">
+                        </div>
+                        <div id="w-node-e8f74dcd-e1ee-3895-e264-45e25dc77396-c8fe3e53" role="listitem" class="services_home_img-item w-dyn-item">
+                          <img data-content-image="" loading="lazy" alt="" src="697ef16f889c1ea502d8ee65_Visual%20Identity.avif" sizes="100vw" srcset="
+                              697ef16f889c1ea502d8ee65_Visual%20Identity-p-500.avif 500w,
+                              697ef16f889c1ea502d8ee65_Visual%20Identity.avif       859w
+                            " class="services_home_img">
+                        </div>
+                        <div id="w-node-e8f74dcd-e1ee-3895-e264-45e25dc77396-c8fe3e53" role="listitem" class="services_home_img-item w-dyn-item">
+                          <img data-content-image="" loading="lazy" alt="" src="697ef17ae082299197a3aa88_Website%20Strategy.avif" class="services_home_img">
+                        </div>
+                        <div id="w-node-e8f74dcd-e1ee-3895-e264-45e25dc77396-c8fe3e53" role="listitem" class="services_home_img-item w-dyn-item">
+                          <img data-content-image="" loading="lazy" alt="" src="697ef15eca91ffc3ae831e4e_Web%20Design.avif" sizes="100vw" srcset="
+                              697ef15eca91ffc3ae831e4e_Web%20Design-p-500.avif 500w,
+                              697ef15eca91ffc3ae831e4e_Web%20Design.avif       859w
+                            " class="services_home_img">
+                        </div>
+                        <div id="w-node-e8f74dcd-e1ee-3895-e264-45e25dc77396-c8fe3e53" role="listitem" class="services_home_img-item w-dyn-item">
+                          <img data-content-image="" loading="lazy" alt="" src="697ef13b8c2c03a57cff1df0_Webflow%20Development.avif" sizes="100vw" srcset="
+                              697ef13b8c2c03a57cff1df0_Webflow%20Development-p-500.avif 500w,
+                              697ef13b8c2c03a57cff1df0_Webflow%20Development.avif       859w
+                            " class="services_home_img">
+                        </div>
+                        <div id="w-node-e8f74dcd-e1ee-3895-e264-45e25dc77396-c8fe3e53" role="listitem" class="services_home_img-item w-dyn-item">
+                          <img data-content-image="" loading="lazy" alt="" src="697ef14da1c89e5e19e5cca4_3D%20Development.avif" sizes="100vw" srcset="
+                              697ef14da1c89e5e19e5cca4_3D%20Development-p-500.avif 500w,
+                              697ef14da1c89e5e19e5cca4_3D%20Development.avif       859w
+                            " class="services_home_img">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-          </header>
-          <div class="problems_home_header-inner"></div>
-          <div class="problems_home_bottom">
-            <div class="problems_home_left">
-              <div data-wf--global-eyebrow--variant="base" class="g_eyebrow">
-                <div class="g_eyebrow_circle"></div>
-                <div id="w-node-_01473dc5-045d-cd95-0817-52d9c52ac3d1-c52ac3cf" class="g_eyebrow_text u-text-style-large">Brands I've Worked With</div>
-              </div>
-            </div>
-            <div class="problems_home_collection w-dyn-list">
-              <div role="list" class="problems_home_list u-grid-custom w-dyn-items">
-    <div role="listitem" class="problems_home_item w-dyn-item">
-      <img src="images/Brands/samsung.png" loading="lazy" alt="Samsung" class="problems_home_image" style="width: 100%; aspect-ratio: 1/1; object-fit: contain; padding: 15%; opacity: 0.85;">
-      <div class="problems_home_label u-text-mono">Samsung</div>
-    </div>
-  
-    <div role="listitem" class="problems_home_item w-dyn-item">
-      <img src="images/Brands/jaypee.png" loading="lazy" alt="Jaypee" class="problems_home_image" style="width: 100%; aspect-ratio: 1/1; object-fit: contain; padding: 15%; opacity: 0.85;">
-      <div class="problems_home_label u-text-mono">Jaypee</div>
-    </div>
-  
-    <div role="listitem" class="problems_home_item w-dyn-item">
-      <img src="images/Brands/mankind.png" loading="lazy" alt="Mankind" class="problems_home_image" style="width: 100%; aspect-ratio: 1/1; object-fit: contain; padding: 15%; opacity: 0.85;">
-      <div class="problems_home_label u-text-mono">Mankind</div>
-    </div>
-  
-    <div role="listitem" class="problems_home_item w-dyn-item">
-      <img src="images/Brands/webtel.png" loading="lazy" alt="Webtel" class="problems_home_image" style="width: 100%; aspect-ratio: 1/1; object-fit: contain; padding: 25%; opacity: 0.85;">
-      <div class="problems_home_label u-text-mono">Webtel</div>
-    </div>
-  
-    <div role="listitem" class="problems_home_item w-dyn-item">
-      <img src="images/Brands/forrm.png" loading="lazy" alt="Forrm Studio" class="problems_home_image" style="width: 100%; aspect-ratio: 1/1; object-fit: contain; padding: 30%; opacity: 0.85;">
-      <div class="problems_home_label u-text-mono">Forrm Studio</div>
-    </div>
-  
-    <div role="listitem" class="problems_home_item w-dyn-item">
-      <img src="images/Brands/centrum.png" loading="lazy" alt="Centrum" class="problems_home_image" style="width: 100%; aspect-ratio: 1/1; object-fit: contain; padding: 15%; opacity: 0.85;">
-      <div class="problems_home_label u-text-mono">Centrum</div>
-    </div>
-  
-    <div role="listitem" class="problems_home_item w-dyn-item">
-      <img src="images/Brands/highnoteperformance.png" loading="lazy" alt="High Note Performance" class="problems_home_image" style="width: 100%; aspect-ratio: 1/1; object-fit: contain; padding: 25%; opacity: 0.85;">
-      <div class="problems_home_label u-text-mono">High Note Performance</div>
-    </div>
-  
-  <div role="listitem" class="problems_home_item w-dyn-item">
-    <div style="width: 100%; aspect-ratio: 1/1; display: flex; align-items: center; justify-content: center;">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="opacity: 0.85;">
-        <path d="M12 5V19M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-      </svg>
-    </div>
-    <div class="problems_home_label u-text-mono">Many Others</div>
-  </div>
-</div>
-            </div>
-            <div class="code-embed-6 w-embed">
-              <style>
-                @media (min-width: 768px) {
-                  .problems_home_item:nth-child(-n + 4) {
-                    border-bottom: 1px dotted var(--swatch--black-300);
-                  }
-                }
-              </style>
             </div>
           </div>
         </section>
-        <section data-theme-section="light" data-stacking-cards-item="" class="gap_home_wrap">
-          <div class="gap_home_contain">
-            <div class="g_bg_overlay">
-              <div class="gap_home_line_horizontal">
-                <div class="gap_home_line_square is-1"></div>
-                <div class="gap_home_line_square is-2"></div>
-                <div class="gap_home_line_square is-3"></div>
-              </div>
-              <div class="gap_home_overlay u-grid-custom">
-                <div class="gap_home_line"></div>
-                <div id="w-node-_95ea37ad-cb60-3f9c-8b81-20835051313b-c8fe3e53" class="gap_home_line"></div>
-                <div id="w-node-_32821c15-9e1e-2210-1e83-e2ffe4f5ce03-c8fe3e53" class="gap_home_line"></div>
-                <div id="w-node-_50c9e742-7699-54cc-3f46-fbd91f6a2339-c8fe3e53" class="gap_home_line"></div>
-                <div id="w-node-_1d3727e3-739e-0c86-bddf-51dc1e7d8554-c8fe3e53" class="gap_home_line"></div>
-              </div>
-              <div class="gap_home_line_horizontal">
-                <div class="gap_home_line_square is-1"></div>
-                <div class="gap_home_line_square is-2"></div>
-                <div class="gap_home_line_square is-3"></div>
-              </div>
-            </div>
-            <div class="gap_home_inner">
-              <div class="gap_home_eyebrow u-text-mono">
-                ‎
-                <!--$--><br><!--/$--><!--$--><br><!--/$--><!--$--><br><!--/$--><!--$--><br><!--/$-->
-              </div>
-              <div class="gap_home_inner_content">
-                <div class="gap_home_inner_heading-contain is-left">
-                  <h2 class="gap_home_inner_heading u-text-style-display is-left">TAKING IN</h2>
-                </div>
-                <div class="gap_home_inner_heading-contain is-right">
-                  <h2 class="gap_home_inner_heading u-text-style-display is-right">THE WORLD</h2>
-                </div>
-              </div>
-              <div class="gap_home_bottom">
-                <p class="gap_home_p u-text-style-h5">My interests are all over the map. When I log off, I am usually riding my motorcycle out to the valleys, tracking game UX mechanics, playing my guitar, or falling down a random reading rabbit hole. I just like figuring out how different things work.</p>
-              </div>
-            </div>
-            <div class="gap_home_cover">
-              <div class="gap_home_gradient"></div>
-              <img src="images/WhatsApp Image 2026-07-24 at 7.41.00 PM.jpeg" loading="lazy" alt="User interest image 1" class="gap_home_image" style="object-fit: cover;"><img src="images/WhatsApp Image 2026-07-24 at 7.41.57 PM.jpeg" loading="lazy" alt="User interest image 2" class="gap_home_image" style="object-fit: cover;"><img src="images/WhatsApp Image 2026-07-24 at 7.42.29 PM.jpeg" loading="lazy" alt="User interest image 3" class="gap_home_image" style="object-fit: cover;"><img src="images/WhatsApp Image 2026-07-24 at 7.43.56 PM.jpeg" loading="lazy" alt="User interest image 4" class="gap_home_image" style="object-fit: cover;"><img src="images/image 10.png" loading="lazy" alt="User interest image 5" class="gap_home_image" style="object-fit: cover;">
-            </div>
-          </div>
-        </section>
-        <section id="work" data-theme-section="light" class="works_home_wrap u-theme-light">
-          <div class="works_home_header">
-            <h2 class="works_home_heading u-text-style-display">
-                FEATURED PROJECTS
-              </h2>
-          </div>
-          <div class="works_home_contain">
-            <div class="works_home_left">
-              <div data-wf--global-eyebrow--variant="base-light" class="g_eyebrow">
-                <div class="g_eyebrow_circle"></div>
-                <div id="w-node-_01473dc5-045d-cd95-0817-52d9c52ac3d1-c52ac3cf" class="g_eyebrow_text u-text-style-large w-variant-e146755c-7cd8-05ac-1b2a-e5d85dd563b0">
-                  Featured Projects
-                </div>
-              </div>
-            </div>
-            <div class="works_home_collection w-dyn-list">
-              <div role="list" class="works_home_list w-dyn-items">
-                
-<div role="listitem" class="works_home_item w-dyn-item">
-  <a href="#" class="works_home_link u-grid-custom w-inline-block">
-    <div data-start="top bottom" data-scroll-container="" data-target-translate="125" id="w-node-c8b1a39d-60a4-5f3d-0268-8191af37a2dc-c8fe3e53" class="works_home_cover u-ratio-1-1">
-      <img src="images/Opening Up Is Hard/Thumbnail.png" loading="lazy" data-translate-hero="true" alt="" class="works_home_image">
-      <div class="works_home_overlay"></div>
-      <div class="reel_home_cover">
-        
-      <div class="reel_home_video hover-slideshow">
-        <img src="images/Opening Up Is Hard/1.png" class="slide s1 u-cover-absolute" style="object-fit: cover;"><img src="images/Opening Up Is Hard/2.png" class="slide s2 u-cover-absolute" style="object-fit: cover;"><img src="images/Opening Up Is Hard/3.png" class="slide s3 u-cover-absolute" style="object-fit: cover;"><img src="images/Opening Up Is Hard/4.png" class="slide s4 u-cover-absolute" style="object-fit: cover;">
-      </div>
-    
-      </div>
-    </div>
-    <div id="w-node-_06790eb0-c4a9-4920-981c-369dcfe962ca-c8fe3e53" class="works_home_content">
-      <div class="works_home_title">
-        <div class="works_home_micrographic">
-          <div class="works_home_content_ss u-text-style-micro" style="width: auto; padding-right: 1rem;">
-            5 Weeks, Individual
-          </div>
-          <div class="works_micrographic_inner" style="flex: 1;">
-            <div class="works_micrographic_circle"></div>
-            <div class="works_micrographic_line"></div>
-            <div class="works_home_micrographic_index">
-              <div class="works_home_content_index u-text-style-micro"></div>
-            </div>
-          </div>
-        </div>
-        <h2 class="works_home_inner_title u-text-style-h5">
-          Opening Up Is Hard
-        </h2>
-        <p class="works_home_p u-text-style-h5" style="white-space: pre-line;">
-          A deep-dive behavioral study of emotional vulnerability in Gen Z students, mapping the systemic gaps and cultural barriers in modern mental health.
-        </p>
-      </div>
-      <div class="works_home_result">
-        <h3 class="works_home_result_value u-text-style-main">
-          Custom Toolkit
-        </h3>
-        <p class="works_home_result_label u-text-style-main" style="white-space: pre-line;">
-          Engineered a custom interview and ideation framework to bypass surface-level social masking and scale the problem-solving process.
-        </p>
-      </div>
-    </div>
-  </a>
-</div>
-
-<div role="listitem" class="works_home_item w-dyn-item">
-  <a href="#" class="works_home_link u-grid-custom w-inline-block">
-    <div data-start="top bottom" data-scroll-container="" data-target-translate="125" id="w-node-c8b1a39d-60a4-5f3d-0268-8191af37a2dc-c8fe3e53" class="works_home_cover u-ratio-1-1">
-      <img src="images/The SaaS Dream/Thumbnail.png" loading="lazy" data-translate-hero="true" alt="" class="works_home_image">
-      <div class="works_home_overlay"></div>
-      <div class="reel_home_cover">
-        
-      <div class="reel_home_video hover-slideshow">
-        <img src="images/The SaaS Dream/ComingSoon.png" class="u-cover-absolute" style="object-fit: cover;">
-      </div>
-    
-      </div>
-    </div>
-    <div id="w-node-_06790eb0-c4a9-4920-981c-369dcfe962ca-c8fe3e53" class="works_home_content">
-      <div class="works_home_title">
-        <div class="works_home_micrographic">
-          <div class="works_home_content_ss u-text-style-micro" style="width: auto; padding-right: 1rem;">
-            2 Month, Individual Industry Project
-          </div>
-          <div class="works_micrographic_inner" style="flex: 1;">
-            <div class="works_micrographic_circle"></div>
-            <div class="works_micrographic_line"></div>
-            <div class="works_home_micrographic_index">
-              <div class="works_home_content_index u-text-style-micro"></div>
-            </div>
-          </div>
-        </div>
-        <h2 class="works_home_inner_title u-text-style-h5">
-          The SaaS Dream
-        </h2>
-        <p class="works_home_p u-text-style-h5" style="white-space: pre-line;">
-          A two month industry sprint at Webtel overhauling their enterprise software suite. The scope included redesigning the ESS, Payroll, and HR Admin ecosystems.
-        </p>
-      </div>
-      <div class="works_home_result">
-        <h3 class="works_home_result_value u-text-style-main">
-          120% Market Capture
-        </h3>
-        <p class="works_home_result_label u-text-style-main" style="white-space: pre-line;">
-          Merged two fragmented mobile applications into a single unified platform, expanding their total addressable market beyond the original baseline.
-        </p>
-      </div>
-    </div>
-  </a>
-</div>
-
-<div role="listitem" class="works_home_item w-dyn-item">
-  <a href="#" class="works_home_link u-grid-custom w-inline-block">
-    <div data-start="top bottom" data-scroll-container="" data-target-translate="125" id="w-node-c8b1a39d-60a4-5f3d-0268-8191af37a2dc-c8fe3e53" class="works_home_cover u-ratio-1-1">
-      <img src="images/CoLab/Thumbnail.png" loading="lazy" data-translate-hero="true" alt="" class="works_home_image">
-      <div class="works_home_overlay"></div>
-      <div class="reel_home_cover">
-        
-      <div class="reel_home_video hover-slideshow">
-        <img src="images/CoLab/1.png" class="slide s1 u-cover-absolute" style="object-fit: cover;"><img src="images/CoLab/2.png" class="slide s2 u-cover-absolute" style="object-fit: cover;"><img src="images/CoLab/3.png" class="slide s3 u-cover-absolute" style="object-fit: cover;"><img src="images/CoLab/4.png" class="slide s4 u-cover-absolute" style="object-fit: cover;">
-      </div>
-    
-      </div>
-    </div>
-    <div id="w-node-_06790eb0-c4a9-4920-981c-369dcfe962ca-c8fe3e53" class="works_home_content">
-      <div class="works_home_title">
-        <div class="works_home_micrographic">
-          <div class="works_home_content_ss u-text-style-micro" style="width: auto; padding-right: 1rem;">
-            3 Weeks
-          </div>
-          <div class="works_micrographic_inner" style="flex: 1;">
-            <div class="works_micrographic_circle"></div>
-            <div class="works_micrographic_line"></div>
-            <div class="works_home_micrographic_index">
-              <div class="works_home_content_index u-text-style-micro"></div>
-            </div>
-          </div>
-        </div>
-        <h2 class="works_home_inner_title u-text-style-h5">
-          CoLab
-        </h2>
-        <p class="works_home_p u-text-style-h5" style="white-space: pre-line;">
-          A prototype Figma extension built to streamline corporate and group projects. We pioneered a working collaborative AI chatbot ahead of the market, focusing heavily on seamless integration.
-        </p>
-      </div>
-      <div class="works_home_result">
-        <h3 class="works_home_result_value u-text-style-main">
-          82.0 SUS Score
-        </h3>
-        <p class="works_home_result_label u-text-style-main" style="white-space: pre-line;">
-          Achieved a Grade A System Usability Scale rating, proving the complex AI group chat integration remained highly intuitive for users.
-        </p>
-      </div>
-    </div>
-  </a>
-</div>
-
-<div role="listitem" class="works_home_item w-dyn-item">
-  <a href="#" class="works_home_link u-grid-custom w-inline-block">
-    <div data-start="top bottom" data-scroll-container="" data-target-translate="125" id="w-node-c8b1a39d-60a4-5f3d-0268-8191af37a2dc-c8fe3e53" class="works_home_cover u-ratio-1-1">
-      <img src="images/Perplexity/Thumbnail.png" loading="lazy" data-translate-hero="true" alt="" class="works_home_image">
-      <div class="works_home_overlay"></div>
-      <div class="reel_home_cover">
-        
-      <div class="reel_home_video hover-slideshow">
-        <img src="images/Perplexity/1.png" class="slide s1 u-cover-absolute" style="object-fit: cover;"><img src="images/Perplexity/2.png" class="slide s2 u-cover-absolute" style="object-fit: cover;"><img src="images/Perplexity/3.png" class="slide s3 u-cover-absolute" style="object-fit: cover;"><img src="images/Perplexity/4.png" class="slide s4 u-cover-absolute" style="object-fit: cover;">
-      </div>
-    
-      </div>
-    </div>
-    <div id="w-node-_06790eb0-c4a9-4920-981c-369dcfe962ca-c8fe3e53" class="works_home_content">
-      <div class="works_home_title">
-        <div class="works_home_micrographic">
-          <div class="works_home_content_ss u-text-style-micro" style="width: auto; padding-right: 1rem;">
-            3 Weeks
-          </div>
-          <div class="works_micrographic_inner" style="flex: 1;">
-            <div class="works_micrographic_circle"></div>
-            <div class="works_micrographic_line"></div>
-            <div class="works_home_micrographic_index">
-              <div class="works_home_content_index u-text-style-micro"></div>
-            </div>
-          </div>
-        </div>
-        <h2 class="works_home_inner_title u-text-style-h5">
-          Perplexity Redesign
-        </h2>
-        <p class="works_home_p u-text-style-h5" style="white-space: pre-line;">
-          A foundational UX exercise stripping down a complex AI search engine. The visual overhaul was strictly guided by core usability principles to improve information discovery and reduce cognitive load.
-        </p>
-      </div>
-      <div class="works_home_result">
-        <h3 class="works_home_result_value u-text-style-main">
-          Hick's & Fitts's Law
-        </h3>
-        <p class="works_home_result_label u-text-style-main" style="white-space: pre-line;">
-          Restructured the interface to minimize user decision fatigue and optimized interactive targets to create a highly fluid, frictionless experience.
-        </p>
-      </div>
-    </div>
-  </a>
-</div>
-
-              </div>
-            </div>
-          </div>
-          <div class="works_home_cta">
-            <a data-sound-hover="" href="/work" class="works_home_cta_link w-inline-block"><div data-count-display="work" class="works_home_cta_text u-text-style-h4">
-                ##
-              </div>
-              <div class="works_home_cta_text is-duplicate u-text-style-h4">
-                View All Work
-              </div>
-              <div class="works_home_cta_text is-duplicate-2 u-text-style-h4">
-                (→)
-              </div></a>
-          </div>
-          <div class="code-embed-3 w-embed">
-            <style>
-              .reel_home_cover {
-                transition:
-                  opacity 0.15s cubic-bezier(0.25, 0, 0.25, 1),
-                  transform 0.85s var(--animation-expo-out);
-              }
-              .works_home_overlay,
-              .works_home_details {
-                transition:
-                  opacity 0.2s cubic-bezier(0.25, 0, 0.25, 1),
-                  backdrop-filter 0.85s var(--animation-expo-out);
-              }
-              .works_home_item:last-child {
-                border: 0;
-                padding-bottom: 0;
-              }
-
-              @media (hover: hover) and (pointer: fine) {
-                .works_home_item:hover .reel_home_cover {
-                  transform: translateY(0%) rotateX(0deg) scale(1);
-                  opacity: 1;
-                }
-                .works_home_item:hover .works_home_overlay {
-                  opacity: 1;
-                  backdrop-filter: blur(2px) sepia();
-                }
-                .works_home_item:hover .works_home_details {
-                  opacity: 1;
-                }
-              }
-
-              @media (hover: none) or (pointer: coarse) {
-                .works_home_item.is-active .reel_home_cover {
-                  transform: translateY(0%) rotateX(0deg) scale(1);
-                  opacity: 1;
-                }
-                .works_home_item.is-active .works_home_overlay {
-                  opacity: 1;
-                  backdrop-filter: blur(2px) sepia();
-                }
-                .works_home_item.is-active .works_home_details {
-                  opacity: 1;
-                }
-              }
-              .works_home_list {
-                counter-reset: item-counter;
-              }
-
-              .works_home_item {
-                counter-increment: item-counter;
-              }
-
-              .works_home_item .works_home_content_index::before {
-                content: counter(item-counter, decimal-leading-zero);
-              }
-            </style>
-          </div>
-        </section>
-        
-        
-        
-<section id="faqs" class="faq_home_wrap u-grid-custom">
-  <div id="w-node-_175f460a-5a43-8e1a-5c1c-d7cade701ca5-de701ca4" class="faq_home_left">
-    <div data-wf--global-eyebrow--variant="base" class="g_eyebrow">
-      <div class="g_eyebrow_circle"></div>
-      <div id="w-node-_01473dc5-045d-cd95-0817-52d9c52ac3d1-c52ac3cf" class="g_eyebrow_text u-text-style-large">
-        Not-So-FAQ
-      </div>
-    </div>
-  </div>
-  <div id="w-node-_175f460a-5a43-8e1a-5c1c-d7cade701ca8-de701ca4" class="faq_home_main">
-    <h2 class="faq_home_heading u-text-style-h2">
-      Answers to questions you were probably never going to ask anyway.
-    </h2>
-    <div data-accordion-close-siblings="true" data-accordion-css-init="" class="g_faq_collection w-dyn-list">
-      <div data-index-group="values" id="w-node-_175f460a-5a43-8e1a-5c1c-d7cade701cac-de701ca4" role="list" class="g_faq_list w-dyn-items">
-        
-<div data-accordion-status="not-active" role="listitem" class="g_faq_item w-dyn-item">
-  <!--$--><button data-accordion-toggle="" data-hover-highlight="accordion" class="accordion_css_item_top">
-    <!--$--><span class="accordion_css_item_bg"></span><!--/$-->
-    <h3 data-hover-heading="" class="accordion_css_item_heading u-text-trim-off u-text-style-large">
-      Why shouldn't I just hire my nephew for this?
-    </h3>
-    <div class="accordion_css_square"></div></button><!--/$-->
-  <div class="accordion_css_item_bottom">
-    <div class="accordion_css_bottom_wrap">
-      <div class="accordion_css_bottom_contain">
-        <div class="accordion_css_bottom_rich u-rich-text u-text-style-small w-richtext">
-          <p>I will not make your holiday dinners awkward over delayed payments and last moment button color changes.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="faq_css w-embed">
-                    <style>
-                      .accordion_css_item_contain {
-                        transition: transform 0.75s var(--animation-secondary);
-                      }
-                      .accordion_css_item_bottom {
-                        transition: grid-template-rows 0.6s
-                          cubic-bezier(0.625, 0.05, 0, 1);
-                      }
-                      .accordion_css_item_bg {
-                        transition: background-color 0.65s
-                          cubic-bezier(0.16, 1, 0.35, 1);
-                      }
-                      .accordion_css_square {
-                        transition:
-                          transform 0.65s cubic-bezier(0.16, 1, 0.35, 1),
-                          background-color 0.65s cubic-bezier(0.16, 1, 0.35, 1);
-                      }
-
-                      [data-accordion-status="active"]
-                        .accordion_css_item_bottom {
-                        grid-template-rows: 1fr;
-                      }
-
-                      [data-accordion-status="active"] {
-                        & .accordion_css_square {
-                          background-color: var(--swatch--black-400);
-                          transform: translateX(-10px);
-                        }
-
-                        & .accordion_css_item_heading {
-                          color: var(--swatch--black-400);
-                          transform: translateX(10px);
-                        }
-
-                        & .accordion_css_item_bg {
-                          background-color: var(--swatch--beige-100);
-                        }
-                      }
-
-                      @media (hover: hover) and (pointer: fine) {
-                        .accordion_css_item_top:hover {
-                          & .accordion_css_square {
-                            background-color: var(--swatch--black-400);
-                            transform: translateX(-10px);
-                          }
-
-                          & .accordion_css_item_heading {
-                            color: var(--swatch--black-400);
-                            transform: translateX(10px);
-                          }
-
-                          & .accordion_css_item_bg {
-                            background-color: var(--swatch--beige-100);
-                          }
-                        }
-                      }
-                    </style>
-                  </div>
-</div>
-
-<div data-accordion-status="not-active" role="listitem" class="g_faq_item w-dyn-item">
-  <!--$--><button data-accordion-toggle="" data-hover-highlight="accordion" class="accordion_css_item_top">
-    <!--$--><span class="accordion_css_item_bg"></span><!--/$-->
-    <h3 data-hover-heading="" class="accordion_css_item_heading u-text-trim-off u-text-style-large">
-      Are you just 3 AIs in a trenchcoat?
-    </h3>
-    <div class="accordion_css_square"></div></button><!--/$-->
-  <div class="accordion_css_item_bottom">
-    <div class="accordion_css_bottom_wrap">
-      <div class="accordion_css_bottom_contain">
-        <div class="accordion_css_bottom_rich u-rich-text u-text-style-small w-richtext">
-          <p>No, but I definitely know how to get work done using a crew of AI henchmen. I do the deep thinking, research and user logic, and I make them do all the heavy lifting and grunt work.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-  
-</div>
-
-<div data-accordion-status="not-active" role="listitem" class="g_faq_item w-dyn-item">
-  <!--$--><button data-accordion-toggle="" data-hover-highlight="accordion" class="accordion_css_item_top">
-    <!--$--><span class="accordion_css_item_bg"></span><!--/$-->
-    <h3 data-hover-heading="" class="accordion_css_item_heading u-text-trim-off u-text-style-large">
-      What do you do outside of work?
-    </h3>
-    <div class="accordion_css_square"></div></button><!--/$-->
-  <div class="accordion_css_item_bottom">
-    <div class="accordion_css_bottom_wrap">
-      <div class="accordion_css_bottom_contain">
-        <div class="accordion_css_bottom_rich u-rich-text u-text-style-small w-richtext">
-          <p>Waking up way too early to take my bike out for a ride, messing around on random instruments (I can't play any of them properly), and diving down random reading rabbit holes.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-  
-</div>
-
-<div data-accordion-status="not-active" role="listitem" class="g_faq_item w-dyn-item">
-  <!--$--><button data-accordion-toggle="" data-hover-highlight="accordion" class="accordion_css_item_top">
-    <!--$--><span class="accordion_css_item_bg"></span><!--/$-->
-    <h3 data-hover-heading="" class="accordion_css_item_heading u-text-trim-off u-text-style-large">
-      Do you play a lot of video games?
-    </h3>
-    <div class="accordion_css_square"></div></button><!--/$-->
-  <div class="accordion_css_item_bottom">
-    <div class="accordion_css_bottom_wrap">
-      <div class="accordion_css_bottom_contain">
-        <div class="accordion_css_bottom_rich u-rich-text u-text-style-small w-richtext">
-          <p>Sadly, no. I rarely have the time to actually play them these days. But I do like studying about game UX. I watch hours of video essays on how games guide players without them noticing. I still keep a highly detailed spreadsheet of my gaming backlog just to feel involved.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-  
-</div>
-
-<div data-accordion-status="not-active" role="listitem" class="g_faq_item w-dyn-item">
-  <!--$--><button data-accordion-toggle="" data-hover-highlight="accordion" class="accordion_css_item_top">
-    <!--$--><span class="accordion_css_item_bg"></span><!--/$-->
-    <h3 data-hover-heading="" class="accordion_css_item_heading u-text-trim-off u-text-style-large">
-      Should we hire you?
-    </h3>
-    <div class="accordion_css_square"></div></button><!--/$-->
-  <div class="accordion_css_item_bottom">
-    <div class="accordion_css_bottom_wrap">
-      <div class="accordion_css_bottom_contain">
-        <div class="accordion_css_bottom_rich u-rich-text u-text-style-small w-richtext">
-          <p>Please.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-  
-</div>
-      </div>
-    </div>
-  </div>
-  <div id="w-node-_175f460a-5a43-8e1a-5c1c-d7cade701cba-de701ca4" class="faq_home_content">
-    <img loading="lazy" src="images/pfp.jpg" alt="A headshot of Vikhyat" class="faq_home_headshot">
-    <p class="faq_home_p u-text-style-h5">
-      Got more questions? Contact Vikhyat.
-    </p>
-    <a data-btn-default="" data-wf--global-button-main--variant="base" href="#contact" class="g_btn_main w-inline-block">
-      <div class="g_btn_text_contain">
-        <div class="g_btn_text u-text-style-small u-text-trim-off">
-          Contact Me
-        </div>
-      </div>
-      <div class="g_btn_aside_wrap">
-        <div class="g_btn_aside_bg"></div>
-        <!--$--><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 12 12" fill="none" class="g_btn_svg">
-          <!--$-->
-          <path d="M8.90954 9.09046L9 3L2.90954 3.09046L2.90213 4.32367L6.86437 4.25391L2.55914 8.55914L3.44086 9.44086L7.74609 5.13563L7.68708 9.10862L8.90954 9.09046Z" fill="currentColor"></path>
-          <!--/$--></svg><!--/$-->
-        <!--$--><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 12 12" fill="none" class="g_btn_svg is-absolute">
-          <!--$-->
-          <path d="M8.90954 9.09046L9 3L2.90954 3.09046L2.90213 4.32367L6.86437 4.25391L2.55914 8.55914L3.44086 9.44086L7.74609 5.13563L7.68708 9.10862L8.90954 9.09046Z" fill="currentColor"></path>
-          <!--/$--></svg><!--/$-->
-      </div>
-    </a>
-  </div>
-</section>
-
-        <footer data-footer-parallax="" class="footer_wrap_main">
+<footer data-footer-parallax="" class="footer_wrap_main">
           <!--$-->
           <div data-footer-parallax-inner="" class="footer_wrap">
             <div class="footer_top">
@@ -2504,4 +2016,33 @@
     </script>
   
     
-  </body></html><!--/$-->
+  
+
+
+<script>
+  window.addEventListener('load', function() {
+    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined' && typeof SplitText !== 'undefined') {
+      setTimeout(() => {
+        const texts = document.querySelectorAll('.experience-text');
+        texts.forEach(text => {
+          const split = new SplitText(text, { type: "words,chars" });
+          
+          gsap.fromTo(split.chars, 
+            { color: "rgba(0,0,0,0.15)" },
+            { 
+              color: "rgba(0,0,0,1)",
+              stagger: 0.1,
+              scrollTrigger: {
+                trigger: text,
+                start: "top 95%", // Starts as soon as the top of the text enters the bottom 5% of the screen
+                end: "bottom 85%", // Finishes completely by the time the bottom of the text reaches 15% from the bottom of the screen
+                scrub: 0.5 // Brings back the original smooth scrub tied to the scroll wheel
+              }
+            }
+          );
+        });
+      }, 1000);
+    }
+  });
+</script>
+</body></html><!--/$-->

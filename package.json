@@ -13,6 +13,7 @@
   "dependencies": {
     "cheerio": "^1.2.0",
     "playwright": "^1.61.1",
+    "puppeteer": "^25.4.0",
     "serve": "^14.2.6",
     "website-scraper": "^5.3.1"
   }
