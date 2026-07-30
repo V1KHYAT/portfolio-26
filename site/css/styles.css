@@ -2,10 +2,13 @@ html{-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;font-family:sans-se
 #faqs { scroll-margin-top: 100px; }
 .footer_wrap { min-height: 100svh; justify-content: center; gap: 40px; display: flex; flex-flow: column; }
 /* Custom Navlink Fix */
-.navbar_links_a {
+.navbar_link {
     opacity: 0.5 !important;
     transition: opacity 0.2s ease !important;
 }
-.navbar_links_a:hover, .navbar_links_a.w--current {
+.navbar_link:hover, .navbar_link.w--current {
     opacity: 1 !important;
 }
+
+.navbar_wrap [data-link-hover]::before { display: none !important; }
+
