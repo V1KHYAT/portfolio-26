@@ -1561,24 +1561,19 @@
       </header>
       <main class="page_main">
 
-        <section data-theme-section="light" class="hero_home_wrap" style="min-height: 80vh; display: flex; align-items: center; justify-content: center; padding-top: 5rem;">
+        <section data-theme-section="light" class="hero_home_wrap" style="min-height: 100vh; padding-bottom: 40vh; display: flex; align-items: center; justify-content: center; padding-top: 5rem;">
           <div class="u-container" style="text-align: center; display: flex; flex-direction: column; align-items: center;">
             <h1 class="u-text-style-display" style="margin-bottom: 2rem;">Say Hello.</h1>
-            <img src="https://media.tenor.com/VGWpu8FH82AAAAAM/happy-cat-yippee-cat.gif" alt="Happy Cat" style="width: 200px; border-radius: 12px; margin-bottom: 3rem;"/>
+            <img src="https://media.tenor.com/VGWpu8FH82AAAAAM/happy-cat-yippee-cat.gif" alt="Happy Cat" style="width: 240px; height: 320px; object-fit: cover; object-position: center; border-radius: 12px; margin-bottom: 3rem;"/>
             
             <div style="display: flex; flex-direction: column; align-items: center; gap: 1.5rem;">
               
               <div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; justify-content: center;">
-                <a href="mailto:kaushik.vikhyat2006@gmail.com" class="u-text-style-h3" style="text-decoration: none; color: inherit; transition: opacity 0.2s;" onmouseover="this.style.opacity=0.7" onmouseout="this.style.opacity=1">kaushik.vikhyat2006@gmail.com</a>
-                <button id="copyEmailBtn" class="g_btn_main w-inline-block" style="cursor: pointer; background: transparent; border: 1px solid var(--swatch--black-400); padding: 0.5rem 1rem; border-radius: 100vw;" onclick="navigator.clipboard.writeText('kaushik.vikhyat2006@gmail.com'); const txt = this.querySelector('.g_btn_text'); txt.innerText='Copied!'; setTimeout(() => txt.innerText='Copy Email', 2000);">
-                  <div class="g_btn_text_contain">
-                    <div class="g_btn_text u-text-style-small u-text-trim-off" style="color: var(--swatch--black-400);">Copy Email</div>
-                  </div>
-                </button>
+                <a href="javascript:void(0);" class="u-text-style-h3" style="text-decoration: none; color: inherit; transition: opacity 0.2s; cursor: pointer;" onmouseover="this.style.opacity=0.7" onmouseout="this.style.opacity=1" onclick="navigator.clipboard.writeText('kaushik.vikhyat2006@gmail.com'); const orig = 'kaushik.vikhyat2006@gmail.com'; this.innerText='Copied!'; setTimeout(() => this.innerText=orig, 2000);">kaushik.vikhyat2006@gmail.com</a>
               </div>
 
               <div style="display: flex; align-items: center; gap: 1rem;">
-                <a href="tel:+917678491567" class="u-text-style-h3" style="text-decoration: none; color: inherit; transition: opacity 0.2s;" onmouseover="this.style.opacity=0.7" onmouseout="this.style.opacity=1">+91 7678491567</a>
+                <a href="javascript:void(0);" class="u-text-style-h3" style="text-decoration: none; color: inherit; transition: opacity 0.2s; cursor: pointer;" onmouseover="this.style.opacity=0.7" onmouseout="this.style.opacity=1" onclick="navigator.clipboard.writeText('+91 7678491567'); const orig = '+91 7678491567'; this.innerText='Copied!'; setTimeout(() => this.innerText=orig, 2000);">+91 7678491567</a>
               </div>
 
             </div>
