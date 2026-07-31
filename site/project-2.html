@@ -332,9 +332,8 @@
                 expandViewer();
                 return;
             }
-            if (!isExpanded && e.deltaY < 0) {
-                history.back();
-                return;
+            if (!isExpanded) {
+                return; // Do nothing on scroll-up when collapsed
             }
             if (isExpanded && currentSlide === 0 && e.deltaY < 0) {
                 shrinkViewer();
@@ -358,7 +357,7 @@
         window.addEventListener('touchmove', (e) => {
             const delta = touchStartY - e.touches[0].clientY;
             if (!isExpanded && delta > 10) { e.preventDefault(); expandViewer(); return; }
-            if (!isExpanded && delta < -10) { e.preventDefault(); history.back(); return; }
+            if (!isExpanded) return; // Do nothing on swipe-down when collapsed
             if (isExpanded && currentSlide === 0 && delta < -10) { e.preventDefault(); shrinkViewer(); return; }
             if (isExpanded && !isSliding && Math.abs(delta) > 50) {
                 e.preventDefault();
