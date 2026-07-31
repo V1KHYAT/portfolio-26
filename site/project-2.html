@@ -118,14 +118,14 @@
         align-items: center;
         height: 100%;
         width: max-content;
-        padding-left: 15%; /* Center the first slide within the frame */
-        gap: 3%;
+        padding-left: 15vw;
+        gap: 3vw;
         transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         will-change: transform;
       }
 
       .presentation-slide {
-        width: 70%;
+        width: 70vw;
         height: 80%;
         min-height: 0;
         min-width: 0;
@@ -263,8 +263,8 @@
 
         // --- Slide navigation ---
         function updateSlider() {
-            // Slide width = 70%, Gap = 3%. Stride = 73% of the viewer's width.
-            sliderRoot.style.transform = `translateX(-${currentSlide * 73}%)`;
+            // Slide width = 70vw, Gap = 3vw. Stride = 73vw.
+            sliderRoot.style.transform = `translateX(-${currentSlide * 73}vw)`;
             
             // Update active slide state
             loadedSlides.forEach((slide, index) => {
