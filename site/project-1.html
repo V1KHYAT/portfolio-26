@@ -31,7 +31,7 @@
         display: flex; 
         flex-direction: column; 
         justify-content: flex-end; 
-        padding-top: 25vh; /* Pushes the viewer down, making it 75vh tall initially */
+        padding-top: 40vh; /* Pushes the viewer down, leaving top 40% of screen for title */
         box-sizing: border-box;
         transition: padding-top 0.8s cubic-bezier(0.16, 1, 0.3, 1);
       }
@@ -42,15 +42,15 @@
       /* Massive Background Title */
       .background-project-title {
         position: fixed;
-        top: 35vh; /* Positioned perfectly so the bottom part dips behind the 75vh viewer */
+        bottom: 60vh; /* Exactly aligned with the top of the 60vh viewer (padding-top 40vh) */
         left: 50%;
-        transform: translate(-50%, -50%);
+        transform: translate(-50%, 30%); /* Push exactly 30% of its height down below the viewer line */
         width: 100%;
         text-align: center;
         color: var(--swatch--beige-100);
         z-index: 1; /* Behind viewer */
         font-family: var(--_typography---font--primary-family);
-        font-size: clamp(4rem, 8vw, 10rem);
+        font-size: clamp(4rem, 9vw, 12rem); /* Even larger for impact */
         line-height: 1;
         letter-spacing: -0.02em;
         white-space: nowrap;
