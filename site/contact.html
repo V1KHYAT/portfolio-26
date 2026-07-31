@@ -1561,19 +1561,84 @@
       </header>
       <main class="page_main">
 
-        <section data-theme-section="light" class="hero_home_wrap" style="padding-top: 6rem; padding-bottom: 4rem; position: relative; z-index: 2; background-color: var(--swatch--light);">
-          <div class="u-container" style="text-align: center; display: flex; flex-direction: column; align-items: center;">
-            <h1 class="u-text-style-display" style="margin-bottom: 2rem;">Say Hello.</h1>
-            <img src="https://media.tenor.com/VGWpu8FH82AAAAAM/happy-cat-yippee-cat.gif" alt="Happy Cat" style="width: 240px; height: 320px; object-fit: cover; object-position: center; border-radius: 12px; margin-bottom: 3rem;"/>
+        <style id="contact-mobile-layout">
+          .contact-layout {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: calc(100vh - 10rem);
+          }
+          .contact-title {
+            margin-bottom: 2rem;
+          }
+          .contact-gif {
+            width: 240px; 
+            height: 320px; 
+            object-fit: cover; 
+            object-position: center; 
+            border-radius: 12px; 
+            margin-bottom: 3rem;
+          }
+          .contact-links {
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            gap: 1.5rem;
+          }
+          .contact-link-wrap {
+            display: flex; 
+            align-items: center; 
+            gap: 1rem; 
+            flex-wrap: wrap; 
+            justify-content: center;
+            width: 100%;
+          }
+          .contact-link-text {
+            text-decoration: none; 
+            color: inherit; 
+            transition: opacity 0.2s; 
+            cursor: pointer;
+            word-break: break-word;
+          }
+          @media screen and (max-width: 767px) {
+            .contact_hero_wrap {
+              padding-top: 2rem !important;
+              padding-bottom: 2rem !important;
+            }
+            .contact-layout {
+              min-height: 85svh;
+              justify-content: space-between;
+              padding-top: 4rem; /* leave space for mobile nav */
+            }
+            .contact-title {
+              margin-bottom: 0 !important;
+            }
+            .contact-gif {
+              margin-bottom: 0;
+              width: 200px;
+              height: 266px;
+            }
+            .contact-link-text {
+              /* Ensure the long email fits the screen width on very small phones */
+              font-size: min(7vw, 1.5rem) !important;
+            }
+          }
+        </style>
+        <section data-theme-section="light" class="hero_home_wrap contact_hero_wrap" style="padding-top: 6rem; padding-bottom: 4rem; position: relative; z-index: 2; background-color: var(--swatch--light);">
+          <div class="u-container contact-layout">
+            <h1 class="u-text-style-display contact-title">Say Hello.</h1>
+            <img src="https://media.tenor.com/VGWpu8FH82AAAAAM/happy-cat-yippee-cat.gif" alt="Happy Cat" class="contact-gif"/>
             
-            <div style="display: flex; flex-direction: column; align-items: center; gap: 1.5rem;">
+            <div class="contact-links">
               
-              <div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; justify-content: center;">
-                <a href="javascript:void(0);" class="u-text-style-h3" style="text-decoration: none; color: inherit; transition: opacity 0.2s; cursor: pointer;" onmouseover="this.style.opacity=0.7" onmouseout="this.style.opacity=1" onclick="navigator.clipboard.writeText('kaushik.vikhyat2006@gmail.com'); const orig = 'kaushik.vikhyat2006@gmail.com'; this.innerText='Copied!'; setTimeout(() => this.innerText=orig, 2000);">kaushik.vikhyat2006@gmail.com</a>
+              <div class="contact-link-wrap">
+                <a href="javascript:void(0);" class="u-text-style-h3 contact-link-text" onmouseover="this.style.opacity=0.7" onmouseout="this.style.opacity=1" onclick="navigator.clipboard.writeText('kaushik.vikhyat2006@gmail.com'); const orig = 'kaushik.vikhyat2006@gmail.com'; this.innerText='Copied!'; setTimeout(() => this.innerText=orig, 2000);">kaushik.vikhyat2006@gmail.com</a>
               </div>
 
-              <div style="display: flex; align-items: center; gap: 1rem;">
-                <a href="javascript:void(0);" class="u-text-style-h3" style="text-decoration: none; color: inherit; transition: opacity 0.2s; cursor: pointer;" onmouseover="this.style.opacity=0.7" onmouseout="this.style.opacity=1" onclick="navigator.clipboard.writeText('+91 7678491567'); const orig = '+91 7678491567'; this.innerText='Copied!'; setTimeout(() => this.innerText=orig, 2000);">+91 7678491567</a>
+              <div class="contact-link-wrap">
+                <a href="javascript:void(0);" class="u-text-style-h3 contact-link-text" onmouseover="this.style.opacity=0.7" onmouseout="this.style.opacity=1" onclick="navigator.clipboard.writeText('+91 7678491567'); const orig = '+91 7678491567'; this.innerText='Copied!'; setTimeout(() => this.innerText=orig, 2000);">+91 7678491567</a>
               </div>
 
             </div>
