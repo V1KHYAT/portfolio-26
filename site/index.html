@@ -2492,8 +2492,27 @@
         setTimeout(updateScrollbar, 500);
       })();
     </script>
+
+    <script>
+      // Save scroll position before navigating to project pages
+      document.querySelectorAll('a[href*="project-"]').forEach(function(link) {
+        link.addEventListener('click', function() {
+          sessionStorage.setItem('indexScrollY', window.scrollY.toString());
+        });
+      });
+      // Restore scroll position when returning from a project
+      (function() {
+        var savedY = sessionStorage.getItem('indexScrollY');
+        if (savedY) {
+          requestAnimationFrame(function() {
+            window.scrollTo(0, parseInt(savedY, 10));
+            sessionStorage.removeItem('indexScrollY');
+          });
+        }
+      })();
+    </script>
   
-    
   </body></html><!--/$-->
+
 
 

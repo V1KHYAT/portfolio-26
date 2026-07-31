@@ -15,6 +15,8 @@
     <link href="https://fonts.googleapis.com" rel="preconnect">
     <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@200;300;400&display=swap" rel="stylesheet">
+    <!-- Preload first slide to eliminate loading lag -->
+    <link rel="preload" as="image" href="images/CoLab/01.webp">
     
     <style>
       body.body, html {
@@ -57,7 +59,7 @@
         transform: translate(-50%, -150%);
       }
 
-      /* Navbar Updates - identical to project-1 */
+      /* Navbar - identical to project-1 */
       .dynamic-navbar {
         position: fixed; 
         width: 100%; 
@@ -83,7 +85,7 @@
         transform: translateY(0);
       }
 
-      /* The Viewer Frame - identical structure to project-1 */
+      /* Viewer Frame - same black as background so it blends */
       .project-viewer-frame {
         position: fixed;
         bottom: 0;
@@ -96,7 +98,7 @@
         height: 60vh; 
         
         overflow: hidden;
-        background-color: var(--swatch--black-300);
+        background-color: var(--swatch--black-400);
         border-radius: 1.5rem 1.5rem 0 0; 
         
         will-change: width, max-width, height, border-radius;
@@ -112,34 +114,49 @@
         border-radius: 0;
       }
 
-      /* Slider inside the viewer */
+      /* Slider container */
       .slider-container {
         display: flex;
         align-items: center;
         height: 100%;
-        width: max-content;
-        padding-left: 15vw;
-        gap: 3vw;
-        transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        padding-left: 0;
+        gap: 0;
+        transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+                    padding-left 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                    gap 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         will-change: transform;
       }
 
+      .project-viewer-frame.is-expanded .slider-container {
+        padding-left: 15vw;
+        gap: 3vw;
+      }
+
+      /* Slides - fill viewer in collapsed state */
       .presentation-slide {
-        width: 70vw;
-        height: 80%;
+        flex: 0 0 100%;
+        height: 100%;
         min-height: 0;
         min-width: 0;
-        flex-shrink: 0;
         display: flex;
         align-items: center;
         justify-content: center;
-        transition: filter 0.6s ease, opacity 0.6s ease, transform 0.6s ease;
+        transition: filter 0.8s ease, opacity 0.8s ease, transform 0.8s ease, flex-basis 0.8s cubic-bezier(0.16, 1, 0.3, 1), height 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        opacity: 1;
+        filter: blur(0px);
+        transform: scale(1);
+      }
+
+      /* In expanded state: carousel mode */
+      .project-viewer-frame.is-expanded .presentation-slide {
+        flex: 0 0 70vw;
+        height: 80%;
         opacity: 0.5;
         filter: blur(6px);
         transform: scale(0.92);
       }
 
-      .presentation-slide.is-active {
+      .project-viewer-frame.is-expanded .presentation-slide.is-active {
         opacity: 1;
         filter: blur(0px);
         transform: scale(1);
@@ -190,10 +207,14 @@
         </div>
     </header>
 
-    <!-- Project Viewer Frame - same as project-1 -->
+    <!-- Project Viewer Frame -->
     <div class="project-viewer-frame">
         <div class="slider-container" id="slider-root">
-            <!-- Slides are dynamically injected here -->
+            <!-- First slide pre-built for zero-lag initial render -->
+            <div class="presentation-slide is-active">
+                <img src="images/CoLab/01.webp" alt="Slide 01" loading="eager" decoding="sync">
+            </div>
+            <!-- Remaining slides injected by JS -->
         </div>
     </div>
 
@@ -208,17 +229,20 @@
         let isSliding = false;
         let currentSlide = 0;
         const totalSlides = 35;
-        const loadedSlides = [];
+        
+        // Collect the pre-built first slide
+        const loadedSlides = [sliderRoot.querySelector('.presentation-slide')];
 
-        // Build slides
-        for (let i = 1; i <= totalSlides; i++) {
+        // Build remaining slides (2 onwards)
+        for (let i = 2; i <= totalSlides; i++) {
             const slide = document.createElement('div');
             slide.className = 'presentation-slide';
             
             const img = document.createElement('img');
-            const slideNum = i < 10 ? '0' + i : i;
+            const slideNum = i < 10 ? '0' + i : String(i);
             img.src = `images/CoLab/${slideNum}.webp`;
             img.alt = `Slide ${slideNum}`;
+            img.loading = i <= 3 ? 'eager' : 'lazy';
             
             img.onerror = () => { slide.dataset.invalid = "true"; slide.style.display = 'none'; };
             
@@ -227,18 +251,13 @@
             loadedSlides.push(slide);
         }
 
-        // Initialize first slide as active
-        setTimeout(() => {
-            if(loadedSlides[0]) loadedSlides[0].classList.add('is-active');
-        }, 100);
-
         function getValidSlideCount() {
             return loadedSlides.filter(s => s.dataset.invalid !== "true").length;
         }
 
-        // --- Expand / Shrink (identical to project-1) ---
+        // --- Expand / Shrink ---
         viewer.addEventListener('transitionend', (e) => {
-            if (e.propertyName === 'max-width' || e.propertyName === 'width') {
+            if (e.propertyName === 'width' || e.propertyName === 'max-width') {
                 isAnimating = false;
             }
         });
@@ -249,6 +268,8 @@
             isExpanded = true;
             body.classList.add('is-expanded');
             viewer.classList.add('is-expanded');
+            // Safety timeout in case transitionend doesn't fire
+            setTimeout(() => { isAnimating = false; }, 900);
         }
 
         function shrinkViewer() {
@@ -259,16 +280,19 @@
             viewer.classList.remove('is-expanded');
             currentSlide = 0;
             updateSlider();
+            setTimeout(() => { isAnimating = false; }, 900);
         }
 
         // --- Slide navigation ---
         function updateSlider() {
-            // Slide width = 70vw, Gap = 3vw. Stride = 73vw.
-            sliderRoot.style.transform = `translateX(-${currentSlide * 73}vw)`;
+            // In expanded mode: slide = 70vw, gap = 3vw, stride = 73vw
+            // In collapsed mode: stride doesn't matter (always slide 0)
+            const stride = isExpanded ? 73 : 0;
+            sliderRoot.style.transform = `translateX(-${currentSlide * stride}vw)`;
             
             // Update active slide state
             loadedSlides.forEach((slide, index) => {
-                if(index === currentSlide) {
+                if (index === currentSlide) {
                     slide.classList.add('is-active');
                 } else {
                     slide.classList.remove('is-active');
@@ -282,7 +306,7 @@
             else if (currentSlide >= 11) targetNav = 'nav-12';
             else if (currentSlide >= 5) targetNav = 'nav-6';
             const navLink = document.getElementById(targetNav);
-            if(navLink) navLink.classList.add('is-active');
+            if (navLink) navLink.classList.add('is-active');
         }
 
         function goToSlide(index) {
@@ -297,31 +321,25 @@
             isSliding = true;
             currentSlide = index;
             updateSlider();
-            setTimeout(() => { isSliding = false; }, 600);
+            setTimeout(() => { isSliding = false; }, 650);
         }
 
-        // --- Global wheel listener (matches project-1 pattern) ---
+        // --- Global wheel listener ---
         window.addEventListener('wheel', (e) => {
             e.preventDefault();
 
             if (!isExpanded && e.deltaY > 0) {
-                // First scroll down: expand the viewer
                 expandViewer();
                 return;
             }
-
             if (!isExpanded && e.deltaY < 0) {
-                // Scroll up while collapsed: go back
                 history.back();
                 return;
             }
-
             if (isExpanded && currentSlide === 0 && e.deltaY < 0) {
-                // At first slide, scroll up: shrink back
                 shrinkViewer();
                 return;
             }
-
             if (isExpanded && !isSliding && Math.abs(e.deltaY) > 20) {
                 if (e.deltaY > 0) {
                     goToSlide(currentSlide + 1);
@@ -339,30 +357,12 @@
 
         window.addEventListener('touchmove', (e) => {
             const delta = touchStartY - e.touches[0].clientY;
-
-            if (!isExpanded && delta > 10) {
-                e.preventDefault();
-                expandViewer();
-                return;
-            }
-            if (!isExpanded && delta < -10) {
-                e.preventDefault();
-                history.back();
-                return;
-            }
-            if (isExpanded && currentSlide === 0 && delta < -10) {
-                e.preventDefault();
-                shrinkViewer();
-                return;
-            }
-
+            if (!isExpanded && delta > 10) { e.preventDefault(); expandViewer(); return; }
+            if (!isExpanded && delta < -10) { e.preventDefault(); history.back(); return; }
+            if (isExpanded && currentSlide === 0 && delta < -10) { e.preventDefault(); shrinkViewer(); return; }
             if (isExpanded && !isSliding && Math.abs(delta) > 50) {
                 e.preventDefault();
-                if (delta > 0) {
-                    goToSlide(currentSlide + 1);
-                } else {
-                    goToSlide(currentSlide - 1);
-                }
+                goToSlide(delta > 0 ? currentSlide + 1 : currentSlide - 1);
                 touchStartY = e.touches[0].clientY;
             }
         }, { passive: false });
@@ -373,18 +373,20 @@
                 if (e.key === 'ArrowRight' || e.key === 'ArrowDown') expandViewer();
                 return;
             }
-            if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
-                goToSlide(currentSlide + 1);
-            } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
-                goToSlide(currentSlide - 1);
-            }
+            if (e.key === 'ArrowRight' || e.key === 'ArrowDown') goToSlide(currentSlide + 1);
+            else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') goToSlide(currentSlide - 1);
         });
 
         // Nav clicks
-        document.getElementById('nav-1').addEventListener('click', () => { if(!isExpanded) expandViewer(); goToSlide(0); });
-        document.getElementById('nav-6').addEventListener('click', () => { if(!isExpanded) expandViewer(); goToSlide(5); });
-        document.getElementById('nav-12').addEventListener('click', () => { if(!isExpanded) expandViewer(); goToSlide(11); });
-        document.getElementById('nav-18').addEventListener('click', () => { if(!isExpanded) expandViewer(); goToSlide(17); });
+        function navGoTo(index) {
+            if (!isExpanded) expandViewer();
+            // Wait for expand animation then go to slide
+            setTimeout(() => goToSlide(index), isExpanded ? 0 : 850);
+        }
+        document.getElementById('nav-1').addEventListener('click', () => navGoTo(0));
+        document.getElementById('nav-6').addEventListener('click', () => navGoTo(5));
+        document.getElementById('nav-12').addEventListener('click', () => navGoTo(11));
+        document.getElementById('nav-18').addEventListener('click', () => navGoTo(17));
     });
     </script>
 

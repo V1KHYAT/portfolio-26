@@ -16,6 +16,8 @@
     <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@200;300;400&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Yatra+One&display=swap" rel="stylesheet">
+    <!-- Preload first image for faster initial render -->
+    <link rel="preload" as="image" href="images/Opening Up Is Hard/Project/Overview.webp">
     
     <style>
       body.body, html {
@@ -37,14 +39,13 @@
       /* Massive Background Title */
       .background-project-title {
         position: fixed;
-        top: 40vh; /* Aligns exactly with the top of the viewer's initial state */
+        top: 40vh;
         left: 50%;
-        transform: translate(-50%, -70%); /* Pulls the text up so exactly 30% remains below the 40vh line */
-        width: 90vw;
-        max-width: 1400px;
+        transform: translate(-50%, -70%);
+        width: calc(100% - 4rem); /* Match navbar content width (padding: 2rem each side) */
         text-align: center;
         color: var(--swatch--beige-100);
-        z-index: 1; /* Behind viewer */
+        z-index: 1;
         font-family: var(--_typography---font--primary-family);
         font-size: clamp(3rem, 6vw, 8rem);
         line-height: 1.1;
@@ -209,6 +210,7 @@
             isExpanded = true;
             body.classList.add('is-expanded');
             viewer.classList.add('is-expanded');
+            setTimeout(() => { isAnimating = false; }, 900);
         }
 
         function shrinkViewer() {
@@ -218,6 +220,7 @@
             body.classList.remove('is-expanded');
             viewer.classList.remove('is-expanded');
             viewer.scrollTop = 0;
+            setTimeout(() => { isAnimating = false; }, 900);
         }
 
         // Global scroll listener (Fixes cursor-outside-viewer bug)
