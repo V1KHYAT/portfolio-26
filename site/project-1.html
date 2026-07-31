@@ -1547,32 +1547,33 @@
     </div>
     <div data-barba-namespace="home" data-barba="container" class="page_wrap">
       
-    <header class="navbar_wrap" style="position: fixed; width: 100%; top: 0; z-index: 100; padding: 1.5rem 2rem;">
+    <header class="navbar_wrap" style="position: fixed; width: 100%; top: 0; z-index: 100; padding: 1.5rem 2rem; background-color: var(--swatch--black-400);">
         <div class="navbar_contain" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
-            <!-- Close Button (Cross on the left) -->
-            <a href="/work.html" class="navbar_link w-inline-block" style="text-decoration: none;">
-                <div class="u-text-style-main" style="color: var(--swatch--beige-100); font-size: 1.5rem; line-height: 1;">✕</div>
-            </a>
+            <!-- Close Button & Project Name (Left) -->
+            <div style="display: flex; align-items: center; gap: 2rem;">
+                <a href="#" onclick="history.back(); return false;" class="navbar_link w-inline-block" style="text-decoration: none;">
+                    <div class="footer_nav_span u-text-style-small" style="color: var(--swatch--beige-100); font-size: 1.25rem; line-height: 1;">✕</div>
+                </a>
+                <div class="footer_nav_span u-text-style-small" style="color: var(--swatch--beige-100); opacity: 0.7;">
+                    Why Opening Up Is Hard
+                </div>
+            </div>
 
             <!-- Scroll Links (Right) -->
-            <div style="display: flex; gap: 1.5rem; align-items: center;">
-                <a href="#overview" class="navbar_link w-inline-block"><div class="u-text-style-main" style="color: var(--swatch--beige-100);">Overview</div></a>
-                <a href="#research" class="navbar_link w-inline-block"><div class="u-text-style-main" style="color: var(--swatch--beige-100);">Research</div></a>
-                <a href="#behaviour" class="navbar_link w-inline-block"><div class="u-text-style-main" style="color: var(--swatch--beige-100);">Behaviour Analysis</div></a>
-                <a href="#concept" class="navbar_link w-inline-block"><div class="u-text-style-main" style="color: var(--swatch--beige-100);">Concept Exploration</div></a>
-                <a href="#relay" class="navbar_link w-inline-block"><div class="u-text-style-main" style="color: var(--swatch--beige-100);">Relay Product</div></a>
+            <div class="navbar_cta_wrap u-text-style-small" style="display: flex; align-items: center;">
+                <a href="#overview" class="navbar_link w-inline-block"><div class="footer_nav_span u-text-style-small" style="color: var(--swatch--beige-100);">Overview</div></a>
+                <a href="#research" class="navbar_link w-inline-block"><div class="footer_nav_span u-text-style-small" style="color: var(--swatch--beige-100);">Research</div></a>
+                <a href="#behaviour" class="navbar_link w-inline-block"><div class="footer_nav_span u-text-style-small" style="color: var(--swatch--beige-100);">Behaviour Analysis</div></a>
+                <a href="#concept" class="navbar_link w-inline-block"><div class="footer_nav_span u-text-style-small" style="color: var(--swatch--beige-100);">Concept Exploration</div></a>
+                <a href="#relay" class="navbar_link w-inline-block"><div class="footer_nav_span u-text-style-small" style="color: var(--swatch--beige-100);">Relay Product</div></a>
             </div>
         </div>
     </header>
 
-    <main class="page_main project_page_main" style="background-color: var(--swatch--black-400); min-height: 100vh; display: flex; flex-direction: column;">
-        <!-- Project Title -->
-        <div style="padding: 8rem 2rem 3rem; text-align: center;">
-            <h1 class="u-text-style-h2" style="color: var(--swatch--beige-100);">Why Opening Up Is Hard</h1>
-        </div>
-
-        <!-- 3-Sided Border Viewer Area -->
-        <div class="project-viewer-frame" style="flex: 1; display: flex; flex-direction: column; margin: 0 auto; width: 100%; max-width: 1400px; border: 2px solid rgba(255, 255, 255, 0.1); border-bottom: none; border-radius: 2rem 2rem 0 0; background-color: var(--swatch--black-300); overflow: hidden;">
+    <main class="page_main project_page_main" style="background-color: var(--swatch--black-400); height: 100vh; overflow: hidden; display: flex; flex-direction: column; padding-top: 6rem;">
+        
+        <!-- 3-Sided Border Viewer Area (Scrolls inside) -->
+        <div class="project-viewer-frame" style="flex: 1; display: flex; flex-direction: column; margin: 0 auto; width: 100%; max-width: 1400px; border: 2px solid rgba(255, 255, 255, 0.1); border-bottom: none; border-radius: 2rem 2rem 0 0; background-color: var(--swatch--black-300); overflow-y: auto;">
             <!-- Assets -->
             <div id="overview" class="project-section" style="width: 100%;">
                 <img src="images/Opening Up Is Hard/Project/Overview.png" style="width: 100%; height: auto; display: block;" />
