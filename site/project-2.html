@@ -19,9 +19,9 @@
     <style>
       .background-project-title {
         position: fixed;
-        top: 40vh; /* Aligns exactly with the top of the viewer's initial state */
+        top: 50%;
         left: 50%;
-        transform: translate(-50%, -70%); /* Pulls the text up so exactly 30% remains below the 40vh line */
+        transform: translate(-50%, -50%);
         width: 100%;
         text-align: center;
         font-size: 15vw;
@@ -29,62 +29,39 @@
         text-transform: uppercase;
         color: rgba(0,0,0,0.05); /* very faint */
         pointer-events: none;
-        will-change: transform, opacity;
-        transition: opacity 0.6s ease, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         z-index: 1;
-      }
-      .is-expanded .background-project-title {
-        opacity: 0;
-        transform: translate(-50%, -150%);
       }
 
       .project-viewer-frame {
         position: fixed;
-        bottom: 0;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 100vw; 
-        max-width: 1200px; /* Base width before expand */
-        height: 65vh;      
-        max-height: 65vh;
-        background-color: var(--swatch--black-300);
-        border-radius: 20px 20px 0 0;
-        z-index: 100;
-        overflow: hidden; 
-        will-change: max-width, max-height, height, border-radius;
-        transition: max-width 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
-                    max-height 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-                    height 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-                    border-radius 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-      }
-
-      .project-viewer-frame.is-expanded {
-        max-width: 100vw;
-        max-height: 100vh;
+        top: 0;
+        left: 0;
+        width: 100vw;
         height: 100vh;
-        border-radius: 0;
+        background-color: var(--swatch--black-300);
+        z-index: 100;
+        overflow: hidden;
       }
 
-      /* Horizontal Slider Track */
       .slider-container {
         display: flex;
         align-items: center;
         height: 100%;
         width: max-content;
-        padding-left: 5vw; /* Start with a slight margin so it's not flush to the left edge */
+        padding-left: 7.5vw; /* (100-85)/2 = 7.5vw offset so the first slide centers perfectly */
+        gap: 4vw; /* Space between slides */
         transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         will-change: transform;
       }
 
       .presentation-slide {
-        width: 85vw; /* 85% width so the next one peeks out */
-        height: 100%;
-        min-height: 0; 
+        width: 85vw; /* Slide width */
+        height: 80vh; /* Leave top and bottom room for nav */
+        min-height: 0;
         min-width: 0;
         display: flex;
         justify-content: center;
         align-items: center;
-        padding-right: 4vw; /* Space between slides */
         flex-shrink: 0;
       }
 
@@ -93,23 +70,14 @@
         height: 100%;
         object-fit: contain;
       }
-      
+
       .dynamic-navbar {
           position: fixed;
           top: 0; left: 0; width: 100%;
           padding: 2rem 5%;
           z-index: 1000;
-          opacity: 0;
-          pointer-events: none;
-          transform: translateY(-20px);
-          transition: opacity 0.5s ease, transform 0.5s ease;
       }
-      body.is-expanded .dynamic-navbar {
-          opacity: 1;
-          pointer-events: auto;
-          transform: translateY(0);
-      }
-      
+
       /* Active state for dynamic waypoints */
       .nav-highlight-link {
           opacity: 0.4;
@@ -119,13 +87,11 @@
       .nav-highlight-link.is-active {
           opacity: 1;
       }
-
-</style>
+    </style>
 </head>
 <body class="body">
 
-    <!-- Massive Background Title -->
-    <div class="background-project-title">COLAB</div>
+    
     
     <!-- Custom Navbar -->
     <header class="dynamic-navbar">
@@ -152,7 +118,8 @@
 
     <!-- Project Viewer Frame -->
     <div class="project-viewer-frame">
-        <div class="slider-container" id="slider-root">
+        <div class="background-project-title">COLAB</div>
+          <div class="slider-container" id="slider-root">
             <!-- Slides are dynamically injected here -->
         </div>
     </div>
@@ -160,14 +127,9 @@
     
     <script>
     document.addEventListener('DOMContentLoaded', () => {
-        const viewer = document.querySelector('.project-viewer-frame');
-        const body = document.body;
         const sliderRoot = document.getElementById('slider-root');
         
-        let isExpanded = false;
-        let isAnimating = false;
         let isSliding = false;
-        
         let currentSlide = 0;
         const totalSlides = 35; // Support up to 35 slides
         const loadedSlides = [];
@@ -190,49 +152,13 @@
             loadedSlides.push(slide);
         }
 
-        viewer.addEventListener('transitionend', (e) => {
-            if (e.propertyName === 'max-width' || e.propertyName === 'width') {
-                isAnimating = false;
-            }
-        });
-
-        function expandViewer() {
-            if (isAnimating || isExpanded) return;
-            isAnimating = true;
-            isExpanded = true;
-            body.classList.add('is-expanded');
-            viewer.classList.add('is-expanded');
-        }
-
-        function collapseViewer() {
-            if (isAnimating || !isExpanded) return;
-            isAnimating = true;
-            isExpanded = false;
-            body.classList.remove('is-expanded');
-            viewer.classList.remove('is-expanded');
-            
-            // Reset to first slide when closing
-            currentSlide = 0;
-            updateSlider(false);
-        }
-
         function getValidSlideCount() {
             return loadedSlides.filter(s => s.dataset.invalid !== "true").length;
         }
 
-        function updateSlider(animate = true) {
-            if (!animate) {
-                sliderRoot.style.transition = 'none';
-            } else {
-                sliderRoot.style.transition = 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
-            }
-            
-            // The translation offset per slide is 85vw (width) + 4vw (padding-right)
-            // But wait, width is 85vw. So total flex-basis is 85vw + padding-right?
-            // Actually flex shrinks if max-width isn't set, but we have flex-shrink: 0, 
-            // so width is exactly 85vw. The total distance to translate per slide is 85vw width. 
-            // Wait, padding-right is included in width if box-sizing is border-box, 
-            // but even if it's not, translating by currentSlide * 89vw (85+4 = 89) centers the next slide exactly.
+        function updateSlider() {
+            // Slide width = 85vw. Gap = 4vw. Total stride = 89vw.
+            // Since padding-left is 7.5vw on the container, translating by -89vw exactly shifts the next slide into the 7.5vw slot (perfectly centered).
             sliderRoot.style.transform = `translateX(-${currentSlide * 89}vw)`;
             
             // Update Nav Highlights
@@ -243,42 +169,28 @@
             else if (currentSlide >= 5) targetNav = 'nav-6';
             const navLink = document.getElementById(targetNav);
             if(navLink) navLink.classList.add('is-active');
-            
-            if (!animate) {
-                // force reflow
-                void sliderRoot.offsetWidth;
-                sliderRoot.style.transition = 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
-            }
         }
 
         function goToSlide(index) {
             if (isSliding) return;
             const validCount = getValidSlideCount();
             if (index < 0) {
-                collapseViewer();
+                // Exit project when scrolling up past the first slide
+                history.back();
                 return;
             }
             if (index >= validCount) return; // End of slides
             
             isSliding = true;
             currentSlide = index;
-            updateSlider(true);
+            updateSlider();
             setTimeout(() => { isSliding = false; }, 600);
         }
 
         // Mouse Wheel interaction
         window.addEventListener('wheel', (e) => {
-            if (!isExpanded) {
-                if (e.deltaY > 0) {
-                    e.preventDefault();
-                    expandViewer();
-                }
-                return;
-            }
-            
             e.preventDefault();
-            
-            if (isAnimating || isSliding) return;
+            if (isSliding) return;
             
             // Threshold for triggering slide
             if (Math.abs(e.deltaY) > 20) {
@@ -298,21 +210,15 @@
 
         window.addEventListener('touchmove', (e) => {
             if (isSliding) return;
-            
-            if (!isExpanded && (touchStartY - e.touches[0].clientY) > 10) {
-                e.preventDefault();
-                expandViewer();
-            } else if (isExpanded) {
-                e.preventDefault();
-                const delta = touchStartY - e.touches[0].clientY;
-                if (Math.abs(delta) > 50) { // Threshold
-                    if (delta > 0) {
-                        goToSlide(currentSlide + 1);
-                    } else {
-                        goToSlide(currentSlide - 1);
-                    }
-                    touchStartY = e.touches[0].clientY; // Reset touch anchor
+            e.preventDefault();
+            const delta = touchStartY - e.touches[0].clientY;
+            if (Math.abs(delta) > 50) { // Threshold
+                if (delta > 0) {
+                    goToSlide(currentSlide + 1);
+                } else {
+                    goToSlide(currentSlide - 1);
                 }
+                touchStartY = e.touches[0].clientY; // Reset touch anchor
             }
         }, { passive: false });
 

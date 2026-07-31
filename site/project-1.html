@@ -40,15 +40,14 @@
         top: 40vh; /* Aligns exactly with the top of the viewer's initial state */
         left: 50%;
         transform: translate(-50%, -70%); /* Pulls the text up so exactly 30% remains below the 40vh line */
-        width: 100%;
+        width: 90vw;
+        max-width: 1400px;
         text-align: center;
         color: var(--swatch--beige-100);
         z-index: 1; /* Behind viewer */
         font-family: var(--_typography---font--primary-family);
-        font-size: clamp(4rem, 9vw, 12rem);
-        line-height: 1;
-        letter-spacing: -0.02em;
-        white-space: nowrap;
+        font-size: clamp(3rem, 6vw, 8rem);
+        line-height: 1.1;
         text-transform: uppercase;
         pointer-events: none;
         will-change: transform, opacity;
