@@ -5,12 +5,17 @@
     <title>Why Opening Up Is Hard | Project</title>
     <meta content="width=device-width, initial-scale=1" name="viewport">
     
+    <link href="images/favicon.png" rel="icon" type="image/png" sizes="32x32" media="(prefers-color-scheme: light)">
+    <link href="images/favicon.png" rel="icon" type="image/png" sizes="32x32" media="(prefers-color-scheme: dark)">
+    <link href="images/favicon.png" rel="apple-touch-icon">
+
     <link href="css/normalize.css" rel="stylesheet" type="text/css">
     <link href="css/components.css" rel="stylesheet" type="text/css">
     <link href="css/styles.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com" rel="preconnect">
     <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@200;300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Yatra+One&display=swap" rel="stylesheet">
     
     <style>
       body, html {
@@ -26,7 +31,7 @@
         overflow-y: auto; 
         margin: 0 auto; 
         width: 100%; 
-        max-width: 1600px; /* Slightly bigger */
+        max-width: 1300px; /* Slightly smaller than 1600px */
         border: 2px solid rgba(255, 255, 255, 0.1); 
         border-bottom: none; 
         border-radius: 1rem 1rem 0 0; 
@@ -55,21 +60,21 @@
         <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
             <!-- Close Button & Project Name (Left) -->
             <div style="display: flex; align-items: center; gap: 2rem;">
-                <a href="#" onclick="history.back(); return false;" class="w-inline-block" style="text-decoration: none;">
-                    <div class="footer_nav_span u-text-style-small" style="color: var(--swatch--beige-100); font-size: 1.25rem; line-height: 1;">✕</div>
+                <a href="#" onclick="history.back(); return false;" class="navbar_link w-inline-block" style="text-decoration: none;">
+                    <div class="footer_nav_span u-text-style-main" style="color: var(--swatch--beige-100); font-size: 1.25rem; line-height: 1;">✕</div>
                 </a>
-                <div class="footer_nav_span u-text-style-small" style="color: var(--swatch--beige-100); opacity: 0.7;">
+                <div class="navbar_cta_wrap u-text-style-small u-text-trim-off" style="color: var(--swatch--beige-100); opacity: 0.7;">
                     Why Opening Up Is Hard
                 </div>
             </div>
 
             <!-- Scroll Links (Right) -->
-            <div style="display: flex; gap: 1rem; align-items: center;">
-                <a href="#overview" class="w-inline-block nav-highlight-link is-active" style="text-decoration: none; padding: 0.25rem;"><div class="footer_nav_span u-text-style-small" style="color: var(--swatch--beige-100);">Overview</div></a>
-                <a href="#research" class="w-inline-block nav-highlight-link" style="text-decoration: none; padding: 0.25rem;"><div class="footer_nav_span u-text-style-small" style="color: var(--swatch--beige-100);">Research</div></a>
-                <a href="#behaviour" class="w-inline-block nav-highlight-link" style="text-decoration: none; padding: 0.25rem;"><div class="footer_nav_span u-text-style-small" style="color: var(--swatch--beige-100);">Behaviour Analysis</div></a>
-                <a href="#concept" class="w-inline-block nav-highlight-link" style="text-decoration: none; padding: 0.25rem;"><div class="footer_nav_span u-text-style-small" style="color: var(--swatch--beige-100);">Concept Exploration</div></a>
-                <a href="#relay" class="w-inline-block nav-highlight-link" style="text-decoration: none; padding: 0.25rem;"><div class="footer_nav_span u-text-style-small" style="color: var(--swatch--beige-100);">Relay Product</div></a>
+            <div class="navbar_cta_wrap u-text-style-small u-text-trim-off" style="display: flex; gap: 1rem; align-items: center;">
+                <a href="#overview" class="navbar_link w-inline-block nav-highlight-link is-active" style="text-decoration: none; padding: 0.25rem;"><div class="footer_nav_span u-text-style-main" style="color: var(--swatch--beige-100);">Overview</div></a>
+                <a href="#research" class="navbar_link w-inline-block nav-highlight-link" style="text-decoration: none; padding: 0.25rem;"><div class="footer_nav_span u-text-style-main" style="color: var(--swatch--beige-100);">Research</div></a>
+                <a href="#behaviour" class="navbar_link w-inline-block nav-highlight-link" style="text-decoration: none; padding: 0.25rem;"><div class="footer_nav_span u-text-style-main" style="color: var(--swatch--beige-100);">Behaviour Analysis</div></a>
+                <a href="#concept" class="navbar_link w-inline-block nav-highlight-link" style="text-decoration: none; padding: 0.25rem;"><div class="footer_nav_span u-text-style-main" style="color: var(--swatch--beige-100);">Concept Exploration</div></a>
+                <a href="#relay" class="navbar_link w-inline-block nav-highlight-link" style="text-decoration: none; padding: 0.25rem;"><div class="footer_nav_span u-text-style-main" style="color: var(--swatch--beige-100);">Relay Product</div></a>
             </div>
         </div>
     </header>
@@ -112,7 +117,7 @@
             });
         });
 
-        // Highlight active section
+        // Highlight active section using a middle-screen observer band
         const sections = document.querySelectorAll('.project-section');
         const navLinks = document.querySelectorAll('.nav-highlight-link');
         
@@ -130,8 +135,8 @@
             });
         }, { 
             root: document.querySelector('.project-viewer-frame'),
-            rootMargin: '0px',
-            threshold: 0.3 /* Trigger when 30% of a section is visible */
+            rootMargin: '-30% 0px -30% 0px', // Triggers when element crosses the middle 40% of the screen
+            threshold: 0 // Fires as soon as ANY pixel enters the middle band (crucial for images taller than the screen)
         });
 
         sections.forEach(s => observer.observe(s));
