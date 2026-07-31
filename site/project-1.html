@@ -27,11 +27,12 @@
         scroll-behavior: smooth;
       }
       .project-viewer-frame {
-        flex: 1; 
-        overflow-y: auto; 
+        height: 100%; /* Fill remaining vertical space */
+        max-height: 100%;
+        aspect-ratio: 16 / 9; /* Strictly 16:9 ratio */
+        max-width: 100%; /* Shrink height on narrow screens to maintain ratio */
         margin: 0 auto; 
-        width: 100%; 
-        max-width: 1300px; /* Slightly smaller than 1600px */
+        overflow-y: auto; 
         border: 2px solid rgba(255, 255, 255, 0.1); 
         border-bottom: none; 
         border-radius: 1rem 1rem 0 0; 
@@ -53,10 +54,10 @@
       }
     </style>
 </head>
-<body class="body" style="height: 100vh; display: flex; flex-direction: column; overflow: hidden; padding-top: 5rem; background-color: var(--swatch--black-400);">
+<body class="body" style="height: 100vh; display: flex; flex-direction: column; justify-content: flex-end; overflow: hidden; padding-top: 7.5rem; background-color: var(--swatch--black-400); box-sizing: border-box;">
     
     <!-- Custom Navbar -->
-    <header style="position: fixed; width: 100%; top: 0; left: 0; z-index: 100; padding: 1.5rem 2rem; background-color: var(--swatch--black-400);">
+    <header style="position: fixed; width: 100%; top: 0; left: 0; z-index: 100; padding: 1.5rem 2rem; background-color: var(--swatch--black-400); box-sizing: border-box;">
         <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
             <!-- Close Button & Project Name (Left) -->
             <div style="display: flex; align-items: center; gap: 2rem;">
@@ -82,7 +83,8 @@
     <!-- 3-Sided Border Viewer Area (Scrolls inside) -->
     <div class="project-viewer-frame">
         <div id="overview" class="project-section" style="width: 100%;">
-            <img src="images/Opening Up Is Hard/Project/Overview.png" loading="lazy" decoding="async" style="width: 100%; height: auto; display: block;" />
+            <link rel="preload" as="image" href="images/Opening Up Is Hard/Project/Overview.png">
+            <img src="images/Opening Up Is Hard/Project/Overview.png" decoding="async" style="width: 100%; height: auto; display: block;" />
         </div>
         <div id="research" class="project-section" style="width: 100%;">
             <img src="images/Opening Up Is Hard/Project/Research.png" loading="lazy" decoding="async" style="width: 100%; height: auto; display: block;" />
