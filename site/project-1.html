@@ -22,27 +22,31 @@
         margin: 0;
         padding: 0;
         background-color: var(--swatch--black-400);
-        height: 100vh;
-        overflow: hidden; /* Lock native scrolling */
+        /* Allow native scrolling */
         scroll-behavior: smooth;
       }
-      .project-viewer-frame {
-        height: 100%; /* Fill remaining vertical space */
-        max-height: 100%;
-        aspect-ratio: 16 / 9; /* Strictly 16:9 ratio */
-        max-width: 100%; /* Shrink height on narrow screens to maintain ratio */
-        margin: 0 auto; 
-        overflow-y: auto; 
-        border: 2px solid rgba(255, 255, 255, 0.1); 
-        border-bottom: none; 
-        border-radius: 1rem 1rem 0 0; 
-        background-color: var(--swatch--black-300);
-        /* Hide scrollbar */
-        -ms-overflow-style: none; 
-        scrollbar-width: none;
+      
+      /* Transparent Navbar with Difference Blending */
+      .dynamic-navbar {
+        position: fixed; 
+        width: 100%; 
+        top: 0; 
+        left: 0; 
+        z-index: 100; 
+        padding: 1.5rem 2rem; 
+        box-sizing: border-box;
+        mix-blend-mode: difference; /* Magically flips text color based on background */
+        pointer-events: none; /* Let clicks pass through empty space */
       }
-      .project-viewer-frame::-webkit-scrollbar {
-          display: none;
+      .dynamic-navbar * {
+        color: #ffffff !important; /* Force white so difference blending flips it to black on light backgrounds */
+        pointer-events: auto; /* Re-enable clicks for links */
+      }
+
+      .project-viewer-frame {
+        width: 100%; 
+        margin: 0 auto; 
+        background-color: var(--swatch--black-400);
       }
       
       .nav-highlight-link {
@@ -54,33 +58,33 @@
       }
     </style>
 </head>
-<body class="body" style="height: 100vh; display: flex; flex-direction: column; justify-content: flex-end; overflow: hidden; padding-top: 7.5rem; background-color: var(--swatch--black-400); box-sizing: border-box;">
+<body class="body" style="background-color: var(--swatch--black-400);">
     
     <!-- Custom Navbar -->
-    <header style="position: fixed; width: 100%; top: 0; left: 0; z-index: 100; padding: 1.5rem 2rem; background-color: var(--swatch--black-400); box-sizing: border-box;">
+    <header class="dynamic-navbar">
         <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
             <!-- Close Button & Project Name (Left) -->
             <div style="display: flex; align-items: center; gap: 2rem;">
                 <a href="#" onclick="history.back(); return false;" class="navbar_link w-inline-block" style="text-decoration: none;">
-                    <div class="footer_nav_span u-text-style-main" style="color: var(--swatch--beige-100); font-size: 1.25rem; line-height: 1;">✕</div>
+                    <div class="footer_nav_span u-text-style-main" style="font-size: 1.25rem; line-height: 1;">✕</div>
                 </a>
-                <div class="navbar_cta_wrap u-text-style-small u-text-trim-off" style="color: var(--swatch--beige-100); opacity: 0.7;">
+                <div class="navbar_cta_wrap u-text-style-small u-text-trim-off" style="opacity: 0.7;">
                     Why Opening Up Is Hard
                 </div>
             </div>
 
             <!-- Scroll Links (Right) -->
             <div class="navbar_cta_wrap u-text-style-small u-text-trim-off" style="display: flex; gap: 1rem; align-items: center;">
-                <a href="#overview" class="navbar_link w-inline-block nav-highlight-link is-active" style="text-decoration: none; padding: 0.25rem;"><div class="footer_nav_span u-text-style-main" style="color: var(--swatch--beige-100);">Overview</div></a>
-                <a href="#research" class="navbar_link w-inline-block nav-highlight-link" style="text-decoration: none; padding: 0.25rem;"><div class="footer_nav_span u-text-style-main" style="color: var(--swatch--beige-100);">Research</div></a>
-                <a href="#behaviour" class="navbar_link w-inline-block nav-highlight-link" style="text-decoration: none; padding: 0.25rem;"><div class="footer_nav_span u-text-style-main" style="color: var(--swatch--beige-100);">Behaviour Analysis</div></a>
-                <a href="#concept" class="navbar_link w-inline-block nav-highlight-link" style="text-decoration: none; padding: 0.25rem;"><div class="footer_nav_span u-text-style-main" style="color: var(--swatch--beige-100);">Concept Exploration</div></a>
-                <a href="#relay" class="navbar_link w-inline-block nav-highlight-link" style="text-decoration: none; padding: 0.25rem;"><div class="footer_nav_span u-text-style-main" style="color: var(--swatch--beige-100);">Relay Product</div></a>
+                <a href="#overview" class="navbar_link w-inline-block nav-highlight-link is-active" style="text-decoration: none; padding: 0.25rem;"><div class="footer_nav_span u-text-style-main">Overview</div></a>
+                <a href="#research" class="navbar_link w-inline-block nav-highlight-link" style="text-decoration: none; padding: 0.25rem;"><div class="footer_nav_span u-text-style-main">Research</div></a>
+                <a href="#behaviour" class="navbar_link w-inline-block nav-highlight-link" style="text-decoration: none; padding: 0.25rem;"><div class="footer_nav_span u-text-style-main">Behaviour Analysis</div></a>
+                <a href="#concept" class="navbar_link w-inline-block nav-highlight-link" style="text-decoration: none; padding: 0.25rem;"><div class="footer_nav_span u-text-style-main">Concept Exploration</div></a>
+                <a href="#relay" class="navbar_link w-inline-block nav-highlight-link" style="text-decoration: none; padding: 0.25rem;"><div class="footer_nav_span u-text-style-main">Relay Product</div></a>
             </div>
         </div>
     </header>
 
-    <!-- 3-Sided Border Viewer Area (Scrolls inside) -->
+    <!-- Full Width Viewer Area (Scrolls natively) -->
     <div class="project-viewer-frame">
         <div id="overview" class="project-section" style="width: 100%;">
             <link rel="preload" as="image" href="images/Opening Up Is Hard/Project/Overview.png">
@@ -136,7 +140,7 @@
                 }
             });
         }, { 
-            root: document.querySelector('.project-viewer-frame'),
+            root: null, // Default viewport
             rootMargin: '-30% 0px -30% 0px', // Triggers when element crosses the middle 40% of the screen
             threshold: 0 // Fires as soon as ANY pixel enters the middle band (crucial for images taller than the screen)
         });
