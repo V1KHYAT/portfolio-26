@@ -210,7 +210,7 @@
         let isSliding = false;
         
         let currentSlide = 0;
-        const totalSlides = 20; // Will attempt to load 1-20
+        const totalSlides = 35; // Increased to cover all 27 slides + headroom
         const loadedSlides = [];
 
         // Build slides
@@ -220,8 +220,9 @@
             if (i === 1) slide.classList.add('is-active');
             
             const img = document.createElement('img');
-            img.src = `images/CoLab/${i}.webp`;
-            img.alt = `Slide ${i}`;
+            const slideNum = i < 10 ? '0' + i : i;
+            img.src = `images/CoLab/${slideNum}.webp`;
+            img.alt = `Slide ${slideNum}`;
             
             // If image fails to load, mark the slide as hidden/invalid so we skip it
             img.onerror = () => { slide.dataset.invalid = "true"; };
